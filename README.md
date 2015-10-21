@@ -39,7 +39,7 @@ Structure
 
 ![Testing the Core Component](diagrams/Testing_the_Core_Component.png?raw=true)
 
-![Testing the Satellite Components](diagrams/Testing_the_Core_Component.png?raw=true)
+![Testing the Satellite Components](diagrams/Testing_the_Satellite_Component.png?raw=true)
 
 TODO: diagramm mit abstrakten bezeichnern, eventuell mehrere diagramme
 
