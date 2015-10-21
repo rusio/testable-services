@@ -37,29 +37,32 @@ The pattern can be used in situations, where we want to test the individual serv
 Structure
 =========
 
+Testing the Core Component
+--------------------------
+
 ![Testing the Core Component](diagrams/Testing_the_Core_Component.png?raw=true)
 
-![Testing the Satellite Components](diagrams/Testing_the_Satellite_Component.png?raw=true)
+Testing the Satellite Component
+-------------------------------
 
-TODO: diagramm mit abstrakten bezeichnern, eventuell mehrere diagramme
-
-TODO: abgrenzen von anderen häufigen und schlechteren strukturrierungsmustern
+![Testing the Satellite Component](diagrams/Testing_the_Satellite_Component.png?raw=true)
 
 
 Participants
 ============
 
-TODO:
+Core Component: Environment-agnostic logic. High-level abstraction, domain model, business logic.
 
-Core Component: Environment-agnostic code. High-level abstraction, domain model, business logic.
-
-Satellite Component: Environment-specific code. Low-level implementation, protocol adapters, collaborator connectors.
+Satellite Component: Environment-specific logic. Low-level implementation, protocol adapters, external connectors.
 
 Component Test: Targets the component's public API. Each test follows the typical AAAA phases introduced by Uncle Bob:
 - Arrange: the component and any test resources and input data are prepared.
 - Act: the component is excercised according to the test scenario.
 - Assert: the result of the actions is checked.
 - Annihilate: the component and all any test resources are destroyed.
+
+Collaborations
+==============
 
 The Arrange and Assert phases may be performed either directly through the component's API, or indirectly by pre-arranging some state or by checking some side-effect.
 
@@ -71,7 +74,7 @@ Isolated: Usually targets the core component. Usually uses the component's publi
 
 Integrative: Usually targets a satellite component. Usually uses another mechanism for the Arrange and Assert phases. Has similar properties to an integration test.
 
-Example-1: The target component wants to write into a database. The test uses an in-memory database in order to accept SQL inserts from the target component.
+Example-1: The target component wants to write into a database. The test uses an in-memory embedded database in order to accept SQL inserts from the target component.
 
 Example-2: The target component wants to accept HTTP requests. The test uses a HTTP client in order to send requests to the target component.
 
@@ -81,3 +84,27 @@ Consequences
 
 TODO
 
+Implementation
+==============
+
+TODO
+
+Sample Code
+===========
+
+TODO
+
+Known Uses
+==========
+
+TODO
+
+Related Patterns
+================
+
+TODO: abgrenzen von anderen häufigen nicht-invertierten Strukturmustern
+
+TODO verlinken:
+
+- Clean Architecture
+- Hexagoal Architecture (Ports and Adapters)
