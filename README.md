@@ -37,6 +37,10 @@ The pattern can be used in situations, where we want to test the individual serv
 Structure
 =========
 
+![Testing the Core Component](blob/master/diagrams/Testing_the_Core_Component.png?raw=true)
+
+![Testing the Satellite Components](diagrams/Testing_the_Core_Component.png?raw=true)
+
 TODO: diagramm mit abstrakten bezeichnern, eventuell mehrere diagramme
 
 TODO: abgrenzen von anderen häufigen und schlechteren strukturrierungsmustern
