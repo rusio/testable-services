@@ -1,19 +1,25 @@
 Testable Services with Inverted Component Dependencies
 ======================================================
 
+A service is usually implemented as a long-running process that provides some functionality in a certain environment. But a service rarely exists alone. In distributed systems, multiple services collaborate with each other and communicate via different protocols. In such situations, any service can be used by other services, or can use other services itself.
+
 Achieving Service Testability at the Component Level
 ----------------------------------------------------
 
-Design patterns describe solutions to common, ever-recurring problems. This pattern focuses on the internal component within a service and describes how component dependency inversion can be employed in order to achieve a higher grade of isolation at the component level.
+The key idea is to design the internal components within a service in such a way, that the service becomes easily testable at the component level. This is achieved by utilizing dependency inversion between the components, so that more coarse-grained API and integration tests can be employed.
 
-The pattern combines known ideas introduced by Robert C. Martin (Uncle Bob) in his work on the SOLID design principles and the Clean Architecture model. In fact, the pattern is a simplified variant of Uncle Bob's Clean Architecture model.
+Examples of Component Design
+----------------------------
+
+![Component Design Examples](diagrams/Component_Design_Examples.png?raw=true)
+
+The following text introduces the idea in the spirit of a design pattern. The pattern combines known ideas introduced by Robert C. Martin (Uncle Bob) in his work on the SOLID design principles and the Clean Architecture model. In a way, the pattern is a simplified variant of Uncle Bob's Clean Architecture model.
 
 
 Intent
 ======
 
-- Split-up the service into one core component and multiple satellite components, so that each component can be tested independently.
-- Utilize component dependency inversion at the application boundary, in order to improve testability and make the core component agnostic of the context.
+- Invert dependencies between the components in order to improve testability and make the core component agnostic of the context.
 - Each test in the harness targets a specific component in isolation, by taking the role of the collaborating component.
 - Tests excercise components only through the component's public API, staying focused on the component level.
 
@@ -21,8 +27,7 @@ Intent
 Motivation
 ==========
 
-A service is a long-process that provides some functionality in a certain environment. When services collaborate with other services, interactions with external dependencies are hard to test sufficiently only at the unit level. Such interactions can happen when for example the service uses a DBMS, or when the service is being used via its REST API. In order to test such scenarios, we want to employ more coarse-grained tests, such as component tests and integration tests.
-
+When a services receives external requests or submits external requests itself, interactions with external dependencies are hard to test realistically only at the unit test level. Such interactions can happen when for example the service uses a DBMS, or when the service is being used via its REST API. In order to test such scenarios, we want to employ more coarse-grained tests, such as component tests and integration tests.
 
 
 Applicability
@@ -42,6 +47,13 @@ The pattern can be used in situations, where we want to test the individual serv
 Structure
 =========
 
+The service code is split into one core component and one or more satellite components, so that each component can be tested in isolation and independently of the others.
+
+The core component is fully agnostic of the environment in which it operates. Typically it will contain a domain model and business logic, but no deployment-specific logic.
+
+The satellite components contain environment-specific logic and serve to provide input or output to the core component. Typically such logic would adapt an external protocol or connect to an external service.
+
+
 Testing the Core Component
 --------------------------
 
@@ -55,10 +67,6 @@ Testing the Satellite Component
 
 Participants
 ============
-
-Core Component: Environment-agnostic logic. High-level abstraction, domain model, business logic.
-
-Satellite Component: Environment-specific logic. Low-level implementation, protocol adapters, external connectors.
 
 Component Test: Targets the component's public API. Each test follows the typical AAAA phases introduced by Uncle Bob:
 - Arrange: the component and any test resources and input data are prepared.
@@ -82,11 +90,14 @@ The component test comes in two main variations:
 
 - Tests targeting one of the satellite components. They have properties similar to integration tests and may use embedded doubles of external depencies like an embedded database. These tests are integrative and may use another mechanism for the Arrange and Assert phases.
 
+Perhaps the most notable difference of the dependency-inverted design compared to a conventional split with straight dependencies manifests itself in the location of the interfaces RequestHandler and ResponseHandler. They are both defined in the core component. This is not quite intuitive at first sight, but eliminates the need for the core component to be dependent on the satellite components, making it easily testable without them.
+
 
 Implementation
 ==============
 
-Perhaps the most notable difference of the dependency-inverted design compared to a conventional split with straight dependencies manifests itself in the location of the interfaces RequestHandler and ResponseHandler. They are both defined in the core component. This is not quite intuitive at first sight, but eliminates the need for the core component to be dependent on the satellite components, making it easily testable without them.
+All components are mapped one-to-one to physical artifacts, such as Jar files or .NET assemblies. The logical application boundary determines which code belongs to the core component and which code is placed into a satellite component.
+
 
 Testing Satellite Components
 ----------------------------
@@ -105,8 +116,8 @@ Sample Code
 
 TODO
 
-Known Uses
-==========
+When to Use
+===========
 
 TODO
 
