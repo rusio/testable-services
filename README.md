@@ -11,8 +11,8 @@ Like components, testing services faces the same difficulties when it comes to d
 
 There are two main objectives when testing a service:
 
-- All interactions between the service and its surroundings.
-- The core business logic inside the service.
+- Test interactions between the service and its surroundings.
+- Test the core business logic inside the service.
 
 A service has some typical interfaces to the external world:
 
