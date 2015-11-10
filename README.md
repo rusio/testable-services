@@ -1,11 +1,30 @@
 Testable Services with Inverted Component Dependencies
 ======================================================
 
-A service provides some functionality in a certain environment. But in distributed systems, a service rarely exists on its own. Usually there are multiple services collaborating with each other and communicating via different protocols. Services might be wildly interconnected and dependent on each other in order to function.
+A service provides some functionality in a certain environment. A service is usually deployed as a long running process. But in distributed systems, a service rarely exists on its own. Usually there are multiple services collaborating with each other and communicating via different protocols. Services might be wildly interconnected and dependent on each other in order to function.
 
 
-Achieving Service Testability at the Component Level
-----------------------------------------------------
+Motivation
+==========
+
+Like components, testing services faces the same difficulties when it comes to dependencies: Services receive and submits requests from and to other services, which must be up and running.
+
+There are two main objectives when testing a service:
+
+- All interactions between the service and its surroundings.
+- The core business logic inside the service.
+
+A service has some typical interfaces to the external world:
+
+- A main entry point for starting and stopping. Examples: the `main()` class, `OnStart()/OnStop()` callbacks, signal handlers.
+- Input ports. Examples: TCP server socket, HTTP request handlers, monitoring a spool directory, a message queue.
+- Output adapters. Examples: a HTTP response writer, a database connection, a TCP connection to another service, a client for sending messages.
+
+A test must be able to interact with these interfaces, in order to arrange, act and assert. And while these interfaces might be well-known in advance, services are often not easily testable in isolation.
+
+
+Achieving Testability at the Component Level
+============================================
 
 The key idea is to design the internal components within a service in a way, that the service becomes testable at component level.
 
@@ -40,35 +59,14 @@ The following text is inspired by ideas introduced by Robert C. Martin (Uncle Bo
 Intent
 ======
 
-- Split-up the logic into a core component, and multiple peripheral components in order to test at the component level.
+- Split-up the logic into one core component, and multiple peripheral components in order to test at the component level.
 - Invert dependencies between components in order to make the core component agnostic of the context it runs in.
 - Each test in the harness targets a specific component in isolation, by taking the role of the collaborating components.
 - Each test exercises a single component, using only the component's public API (in contrast to unit tests, which may access non-public API).
 
 
-Motivation
-==========
-
-Like components, testing services faces the same difficulties when it comes to dependencies: Services receive and submits requests from and to other services.
-
-There are two objectives when testing a service:
-
-- All interactions between the service and its surroundings.
-- The core business logic inside the service.
-
-A service has some typical interfaces to the external world:
-
-- A main entry point for starting and stopping. Examples: the `main()` class, `OnStart()/OnStop()` callbacks, signal handlers.
-- Input ports. Examples: TCP server socket, HTTP request handlers, monitoring a spool directory, a message queue.
-- Output adapters. Examples: a HTTP response writer, a database connection, a TCP connection to another service, a client for sending messages.
-
-A test must be able to interact with these interfaces, in order to arrange, act and assert. And while these interfaces might be well-known in advance, services are often not easily testable in isolation.
-
-
 Structure
 =========
-
-The service code is split into one core component and one or more satellite components, such that each component can be tested in isolation.
 
 The core component is fully agnostic of the environment in which it operates. It contains a domain model and business logic, but no deployment-specific logic.
 
@@ -87,21 +85,21 @@ The test targets the Core Component through its API and fakes the external inter
 ![Testing the Core Component](diagrams/Testing_the_Core_Component.png?raw=true)
 
 
-Participants and Collaborations
--------------------------------
+Participants
+------------
 
 - Core Component - This is the Subject Under Test, which is exercised during the test.
-- Satellite Component - This is the regular collaborator of the core component, which is not used in the test.
-- Business Facade - This is the primary facade to the business logic inside the core component.
-- Request Handler - The primary input interface of the core component for accepting commands from any clients. It is used by the satellite component and implemented in the core component.
+- Satellite Component - A the regular collaborator of the core component, which is not used in the test.
+- Business Logic - Business rules, domain model, interactors.
+- Request Handler - The primary input interface of the core component for accepting commands from any client. It is used by the satellite component and implemented in the core component.
 - Response Handler - The primary output interface of the core component for emitting events to any observers. It is used by the core component and implemented in the satellite component.
-- Core Component Test - The test initializes the core component and mimics the behavior of the real satellite component by invoking commands on the Request Handler and asserting on events from the Response Handler.
+- Core Component Test - Initializes the core component and mimics the behavior of the real satellite component by invoking commands on the Request Handler and asserting on events from the Response Handler.
 
 
 Testing External Interactions
 =============================
 
-The test targets a Satellite Component through its protocol and fakes the business logic.
+The test targets a Satellite Component through its external protocol and fakes the business logic.
 
 ![Testing the Satellite Component](diagrams/Testing_the_Satellite_Component.png?raw=true)
 
@@ -110,10 +108,10 @@ Participants and Collaborations
 -------------------------------
 
 - Satellite Component - This is the Subject Under Test, which is exercised during the test.
-- Core Component - This is the regular collaborator of the satellite component, which is not used in the test.
-- External Service - This is another regular collaborator of the satellite component, which might use or be used by the satellite component.
-- Embedded Substitute - An in-memory substitute for the real External Service, for example a HTTP client or an embedded database.
-- Satellite Component Test - The test initializes the Embedded Service and then the Satellite Component. It uses the Embedded Substitute in combination with the Request Handler or Response Handler in order to act and assert.
+- Core Component - The regular collaborator of the satellite component, which is not used in the test.
+- External Service - Another regular collaborator of the satellite component, which might use or be used by the satellite component.
+- Embedded Substitute - An in-memory substitute for the real External Service, for example an embedded database.
+- Satellite Component Test - The test initializes the Embedded Substitute and then the Satellite Component. It uses the Embedded Substitute in combination with the Request Handler or Response Handler in order to act and assert.
 
 
 Consequences
@@ -127,7 +125,6 @@ A notable difference of the dependency-inverted design compared to a conventiona
 Implementation
 ==============
 
-
 All components are mapped one-to-one to physical artifacts, such as Jar files or .NET assemblies. The logical application boundary determines which code belongs to the core component and which code is placed into a satellite component.
 
 Each test follows the typical AAAA phases introduced by Uncle Bob:
@@ -138,7 +135,7 @@ Each test follows the typical AAAA phases introduced by Uncle Bob:
 
 Example-1: The satellite component wants to write into a database. The test uses an in-memory embedded database in order to accept SQL inserts from the target component.
 
-Example-2: The satellite component wants to accept HTTP requests. The test uses a HTTP client in order to send requests to the target component.
+Example-2: The satellite component wants to accept HTTP requests. The test uses an embedded HTTP client in order to send requests to the target component.
 
 The Arrange and Assert phases may be performed either directly through the component's API, or indirectly by pre-arranging some state or by checking some side-effect.
 
