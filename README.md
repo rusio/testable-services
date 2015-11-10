@@ -16,13 +16,23 @@ Coarse-grained API and integration tests target individual components, and test 
 Examples of Component Design
 ----------------------------
 
-![Component Design Examples](diagrams/Component_Design_Examples.png?raw=true)
+Monolythic: all the code is located in a single component. Dependencies do not cross components.
 
-The first example shows a monolithic application, where all the logic is put into a single deployable unit, including the main method as an entry point. Such internal architecture makes it hard to test the internal components in isolation from each other and might require a full-blown end-to-end test, including a setup of any collaborating services.
+![Component Design Example 1](diagrams/Component_Design_Example_1.png?raw=true)
 
-The second example illustrates a component-oriented design, where related logic is extracted into dedicated components. This a typical "intuitive" divide-and-conquer approach, where the main component is designated to be using and coordinating the subordinate components. Note that the main component also holds the main entry point.
+In a monolithic application, all the logic is put into a single deployable unit. Such internal architecture makes it hard to test the internal components in isolation and might require a full-blown end-to-end test, including setup of any collaborating services.
 
-The third example takes this approach further and splits-up the logic into a core component, a main component and two infrastructure-related components. More importantly, component dependencies are inverted: peripheral components depend on the core component, and the core component is independent of them.
+Cohesive: components hold related code. Root component depends on subordnate components.
+
+![Component Design Example 2](diagrams/Component_Design_Example_2.png?raw=true)
+
+A component-oriented design, where related logic is extracted into dedicated components. This a typical "intuitive" divide-and-conquer approach, where the main component is designated to use and coordinate the subordinate components. Note that the main component also holds the main entry point.
+
+Inverted: components hold related code. But component dependencies all pointing into the core logic.
+
+![Component Design Example 3](diagrams/Component_Design_Example_3.png?raw=true)
+
+Takes this approach further and splits-up the logic into a core component, a main component and two infrastructure-related components. More importantly, component dependencies are inverted: peripheral components depend on the core component, and the core component is independent of them.
 
 The following text is inspired by ideas introduced by Robert C. Martin (Uncle Bob) in his work on the SOLID design principles and the Clean Architecture model.
 
