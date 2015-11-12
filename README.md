@@ -91,9 +91,9 @@ Participants
 - Core Component - This is the Subject Under Test, which is exercised during the test.
 - Satellite Component - A the regular collaborator of the core component, which is not used in the test.
 - Business Logic - Business rules, domain model, interactors.
-- Request Handler - The primary input interface of the core component for accepting commands from any client. It is used by the satellite component and implemented in the core component.
-- Response Handler - The primary output interface of the core component for emitting events to any observers. It is used by the core component and implemented in the satellite component.
-- Core Component Test - Initializes the core component and mimics the behavior of the real satellite component by invoking commands on the Request Handler and asserting on events from the Response Handler.
+- CommandHandler - The primary input interface of the core component for accepting commands from any client. It is used by the satellite component and implemented in the core component.
+- EventHandler - The primary output interface of the core component for emitting events to any observers. It is used by the core component and implemented in the satellite component.
+- Core Component Test - Initializes the core component and mimics the behavior of the real satellite component by invoking commands on the CommandHandler and asserting on events from the EventHandler.
 
 
 Testing External Interactions
@@ -111,7 +111,7 @@ Participants and Collaborations
 - Core Component - The regular collaborator of the satellite component, which is not used in the test.
 - External Service - Another regular collaborator of the satellite component, which might use or be used by the satellite component.
 - Embedded Substitute - An in-memory substitute for the real External Service, for example an embedded database.
-- Satellite Component Test - The test initializes the Embedded Substitute and then the Satellite Component. It uses the Embedded Substitute in combination with the Request Handler or Response Handler in order to act and assert.
+- Satellite Component Test - The test initializes the Embedded Substitute and then the Satellite Component. It uses the Embedded Substitute in combination with the CommandHandler or EventHandler in order to act and assert.
 
 
 Consequences
@@ -119,7 +119,7 @@ Consequences
 
 Targeting a component in the test goes through a whole group of classes. In a way such tests are more coarse-grained than unit tests and cover longer paths. One advantage of this approach is that tests are not overly sensitive to refactorings within the component as long as the component's API remains stable. A disadvantage compared to fine-grained unit tests is the lack of precise control over the smaller units and over the exceptional paths.
 
-A notable difference of the dependency-inverted design compared to a conventional split with straight dependencies manifests itself in the location of the interfaces RequestHandler and ResponseHandler. They are both defined in the core component. This is not quite intuitive at first sight, but eliminates the need for the core component to be dependent on the satellite components, making it easily testable without them.
+An important difference dependency inversion compared to a conventional split with straight dependencies manifests itself in the location of the interfaces CommandHandler and EventHandler. They are both defined and deployed with the core component. This is not quite intuitive at first sight, but it is the key factor to make the core component independent of the satellite components, making it testable without them.
 
 
 Implementation
