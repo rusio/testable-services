@@ -34,17 +34,17 @@ namespace VideoConverter.ApplicationCore
     /// <summary>
     /// The job processor has been created, but not started yet.
     /// </summary>
-    internal class CreatedProcessor : ProcessorState
+    internal class Created : ProcessorState
     {
         internal override void Start(JobProcessor processor)
         {
-            processor.CurrentState = new IdleProcessor();
+            processor.CurrentState = new Idle();
             processor.Initiate();
         }
 
         internal override void Dispose(JobProcessor processor)
         {
-            processor.CurrentState = new DisposedProcessor();
+            processor.CurrentState = new Disposed();
             processor.Terminate();
         }
 
@@ -54,17 +54,17 @@ namespace VideoConverter.ApplicationCore
     /// <summary>
     /// The job processor is waiting for any jobs to process.
     /// </summary>
-    internal class IdleProcessor : ProcessorState
+    internal class Idle : ProcessorState
     {
         internal override void Stop(JobProcessor processor)
         {
-            processor.CurrentState = new DisposedProcessor();
+            processor.CurrentState = new Disposed();
             processor.Terminate();
         }
 
         internal override void Dispose(JobProcessor processor)
         {
-            processor.CurrentState = new DisposedProcessor();
+            processor.CurrentState = new Disposed();
             processor.Terminate();
         }
 
@@ -79,24 +79,24 @@ namespace VideoConverter.ApplicationCore
     /// <summary>
     /// The job processor is currently processing a job.
     /// </summary>
-    internal class BusyProcessor : ProcessorState
+    internal class Busy : ProcessorState
     {
         private readonly ConversionJob job;
 
-        internal BusyProcessor(ConversionJob job)
+        internal Busy(ConversionJob job)
         {
             this.job = job;
         }
 
         internal override void Stop(JobProcessor processor)
         {
-            processor.CurrentState = new DisposedProcessor();
+            processor.CurrentState = new Disposed();
             processor.Terminate();
         }
 
         internal override void Dispose(JobProcessor processor)
         {
-            processor.CurrentState = new DisposedProcessor();
+            processor.CurrentState = new Disposed();
             processor.Terminate();
         }
 
@@ -111,7 +111,7 @@ namespace VideoConverter.ApplicationCore
     /// <summary>
     /// The job processor has been disposed and any resources have been released.
     /// </summary>
-    internal class DisposedProcessor : ProcessorState
+    internal class Disposed : ProcessorState
     {
         internal override void Start(JobProcessor processor)
         {

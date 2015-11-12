@@ -26,7 +26,7 @@ namespace VideoConverter.ApplicationCore
             this.processorObserver = processorObserver;
             this.jobObserver = jobObserver;
             jobScheduler = new EventLoopScheduler();
-            CurrentState = new CreatedProcessor();
+            CurrentState = new Created();
         }
 
         #region "Invocations from the client of IRequestHanler"

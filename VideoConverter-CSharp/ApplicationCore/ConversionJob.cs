@@ -15,17 +15,17 @@ namespace VideoConverter.ApplicationCore
         internal readonly Guid Id = Guid.NewGuid();
 
         private readonly JobRequest request;
-        private readonly IJobObserver responseHandler;
+        private readonly IJobObserver jobObserver;
         private readonly VideoCodec codec;
         private readonly WebClient transferrer;
 
         private readonly FileInfo localInputFile;
         private readonly FileInfo localOutputFile;
 
-        internal ConversionJob(JobRequest request, IJobObserver responseHandler)
+        internal ConversionJob(JobRequest request, IJobObserver jobObserver)
         {
             this.request = request;
-            this.responseHandler = responseHandler;
+            this.jobObserver = jobObserver;
             codec = new VideoCodec();
             transferrer = new WebClient();
             localInputFile = new FileInfo(Path.Combine(Path.GetTempPath(), $"{Id.ToString()}.input"));
@@ -40,17 +40,17 @@ namespace VideoConverter.ApplicationCore
             logger.Trace(nameof(Execute));
             try
             {
-                responseHandler.OnJobStarted(Id);
+                jobObserver.OnJobStarted(Id);
                 DoDownload();
                 DoConvert();
                 DoUpload();
-                responseHandler.OnJobCompleted(Id);
+                jobObserver.OnJobCompleted(Id);
                 return this;
             }
             catch (Exception e)
             {
                 logger.Error(e);
-                responseHandler.OnJobFailed(Id);
+                jobObserver.OnJobFailed(Id);
                 return this;
             }
         }
