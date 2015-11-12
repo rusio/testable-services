@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CA69BA31-2966-4016-9626-2A5276712931}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConverter.ApplicationCore", "ApplicationCore\VideoConverter.ApplicationCore.csproj", "{57929A1D-2BA7-476A-BAAE-EC4F762AFA31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConverter.WindowsService", "WindowsService\VideoConverter.WindowsService.csproj", "{18DC85F0-7CB5-4160-8F94-8FADB1698BC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConverter.IntegrationTests", "IntegrationTests\VideoConverter.IntegrationTests.csproj", "{67FF648D-B229-46F7-822C-9E1ACE79F47E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConverter.InstallerScripts", "InstallerScripts\VideoConverter.InstallerScripts.csproj", "{6D8CC841-B67C-4F4A-85F6-FF26A0B2BC85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConverter.SqlConnector", "SqlConnector\VideoConverter.SqlConnector.csproj", "{2935EFC9-18F2-4327-9724-5283CDB4573D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConverter.HttpConnector", "HttpConnector\VideoConverter.HttpConnector.csproj", "{D695876D-B62F-4862-A414-154B0D3FAF62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57929A1D-2BA7-476A-BAAE-EC4F762AFA31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57929A1D-2BA7-476A-BAAE-EC4F762AFA31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57929A1D-2BA7-476A-BAAE-EC4F762AFA31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57929A1D-2BA7-476A-BAAE-EC4F762AFA31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18DC85F0-7CB5-4160-8F94-8FADB1698BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18DC85F0-7CB5-4160-8F94-8FADB1698BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18DC85F0-7CB5-4160-8F94-8FADB1698BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18DC85F0-7CB5-4160-8F94-8FADB1698BC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67FF648D-B229-46F7-822C-9E1ACE79F47E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67FF648D-B229-46F7-822C-9E1ACE79F47E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67FF648D-B229-46F7-822C-9E1ACE79F47E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67FF648D-B229-46F7-822C-9E1ACE79F47E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D8CC841-B67C-4F4A-85F6-FF26A0B2BC85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D8CC841-B67C-4F4A-85F6-FF26A0B2BC85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D8CC841-B67C-4F4A-85F6-FF26A0B2BC85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D8CC841-B67C-4F4A-85F6-FF26A0B2BC85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2935EFC9-18F2-4327-9724-5283CDB4573D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2935EFC9-18F2-4327-9724-5283CDB4573D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2935EFC9-18F2-4327-9724-5283CDB4573D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2935EFC9-18F2-4327-9724-5283CDB4573D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D695876D-B62F-4862-A414-154B0D3FAF62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D695876D-B62F-4862-A414-154B0D3FAF62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D695876D-B62F-4862-A414-154B0D3FAF62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D695876D-B62F-4862-A414-154B0D3FAF62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

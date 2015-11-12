@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.ServiceModel.Http</name>
+  </assembly>
+  <members>
+    <member name="T:System.ServiceModel.BasicHttpBinding">
+      <summary>ASMX ベースの Web サービスとクライアント、および WS-I Basic Profile 1.1 に準拠するその他のサービスと通信できるエンドポイントを構成および公開するために Windows Communication Foundation (WCF) サービスが使用できるバインディングを表します。</summary>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.BasicHttpBinding" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.#ctor(System.ServiceModel.BasicHttpSecurityMode)">
+      <summary>バインドで使用されるセキュリティの種類を指定して、<see cref="T:System.ServiceModel.BasicHttpBinding" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="securityMode">SOAP メッセージと共に、およびクライアントに対して使用されるセキュリティの種類を指定する <see cref="T:System.ServiceModel.BasicHttpSecurityMode" /> の値。</param>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.BuildChannelFactory``1(System.ServiceModel.Channels.BindingParameterCollection)">
+      <summary>指定した種類のチャネルを作成し、バインド パラメーターのコレクションで指定されている機能を満たすチャネル ファクトリ スタックを、クライアント上に構築します。</summary>
+      <returns>コレクションによって指定される機能を満たす <paramref name="TChannel" /> 型の <see cref="T:System.ServiceModel.Channels.IChannelFactory`1" />。</returns>
+      <param name="parameters">作成されるチャネル ファクトリの要件を指定します。</param>
+      <typeparam name="TChannel">チャネル ファクトリが作成するチャネルの種類。</typeparam>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.CreateBindingElements">
+      <summary>現在のバインディングに含まれるバインド要素の順序付けられたコレクションを作成して返します。</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.BasicHttpBinding" /> により記述されたバインド要素の順序付けられたスタックを含む <see cref="T:System.ServiceModel.Channels.BindingElementCollection" />。</returns>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpBinding.Security">
+      <summary>このバインドで使用されるセキュリティの種類を取得します。</summary>
+      <returns>このバインドで使用される <see cref="T:System.ServiceModel.BasicHttpSecurity" />。既定値は <see cref="F:System.ServiceModel.BasicHttpSecurityMode.None" /> です。</returns>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpMessageCredentialType">
+      <summary>BasicHttpBinding バインディングでセキュリティが有効な場合に、クライアントが認証できる資格情報の種類を列挙します。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpMessageCredentialType.Certificate">
+      <summary>クライアントは証明書を使用して認証されることを示します。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpMessageCredentialType.UserName">
+      <summary>クライアントはユーザー名資格情報を使用して認証されることを示します。</summary>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpSecurity">
+      <summary>basicHttpBinding バインディングのセキュリティ設定を構成します。</summary>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpSecurity.Mode">
+      <summary>basicHttpBinding バインディングのセキュリティ モードを取得または設定します。</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.BasicHttpSecurityMode" /> 列挙値。このプロパティの既定値は <see cref="F:System.ServiceModel.BasicHttpSecurityMode.None" /> です。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">値が、<see cref="T:System.ServiceModel.BasicHttpSecurityMode" /> にとって有効な値ではありません。</exception>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpSecurity.Transport">
+      <summary>basicHttpBinding バインディングのトランスポート レベルのセキュリティ設定を取得します。</summary>
+      <returns>basicHttpBinding バインディングのトランスポート レベルのセキュリティ設定。</returns>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpSecurityMode">
+      <summary>システム指定の <see cref="T:System.ServiceModel.BasicHttpBinding" /> と共に使用できるセキュリティの種類を指定します。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.Message">
+      <summary>セキュリティは、SOAP メッセージ セキュリティを使用して確保されます。<see cref="T:System.ServiceModel.BasicHttpBinding" /> でシステムは、サーバー証明書を個別にクライアントに提供するように要求します。このバインディングで有効なクライアント資格情報の種類は、UserName と Certificate です。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.None">
+      <summary>SOAP メッセージは、転送中にはセキュリティで保護されません。これが既定の動作です。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.Transport">
+      <summary>セキュリティは、HTTPS を使用して確保されます。サービスは、SSL 証明書を使用して構成する必要があります。SOAP メッセージは、HTTPS を使用して、全体として保護されます。サービスは、サービスの SSL 証明書を使用して、クライアントによって認証されます。クライアント認証は、<see cref="P:System.ServiceModel.HttpTransportSecurity.ClientCredentialType" /> を介して制御されます。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.TransportCredentialOnly">
+      <summary>このモードは、メッセージの整合性と機密性を提供しません。これは、HTTP ベースのクライアント認証だけを提供します。このモードを使用するときは十分に注意してください。トランスポート セキュリティが他の方法 (IPSec など) で提供され、クライアント認証だけが Windows Communication Foundation (WCF) インフラストラクチャで提供される環境で使用する必要があります。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.TransportWithMessageCredential">
+      <summary>整合性、機密性、およびサーバー認証は、HTTPS によって提供されます。サービスは、証明書を使用して構成する必要があります。クライアント認証は、SOAP メッセージ セキュリティで提供されます。このモードは、ユーザーが資格情報 (ユーザー名または証明書) を使用して認証を行い、メッセージ転送をセキュリティで保護するために既存の HTTP が配置されている場合に適用できます。</summary>
+    </member>
+    <member name="T:System.ServiceModel.HttpBindingBase">
+      <summary>基本 HTTP バインディングを指定します。</summary>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.AllowCookies">
+      <summary>クライアントがクッキーを受け入れて、それらを今後の要求に反映させるかどうかを示す値を取得または設定します。</summary>
+      <returns>クッキーが許可される場合は true。それ以外の場合は false。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.EnvelopeVersion">
+      <summary>このバインドによって処理されるメッセージに使用される SOAP のバージョンを取得します。</summary>
+      <returns>このバインドによって処理されるメッセージに使用される SOAP のバージョン。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxBufferPoolSize">
+      <summary>チャネルからメッセージを受け取るメッセージ バッファー マネージャーが使用するために割り当てられる最大メモリ量 (バイト単位) を取得または設定します。</summary>
+      <returns>チャネルからメッセージを受け取るメッセージ バッファー マネージャーが使用するために割り当てられる最大メモリ量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxBufferSize">
+      <summary>チャネルからメッセージを受信するバッファーの最大サイズ (バイト単位) を取得または設定します。</summary>
+      <returns>チャネルからメッセージを受信するバッファーの最大サイズ (バイト単位)。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxReceivedMessageSize">
+      <summary>このバインディングで構成されたチャネルで受信可能なメッセージの最大サイズ (バイト単位) を取得または設定します。</summary>
+      <returns>チャネルで受信可能なメッセージの最大サイズが、このバインドを使用してバイト単位で設定されました。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.ReaderQuotas">
+      <summary>このバインディングで構成されたエンドポイントにより処理可能な、SOAP メッセージの複雑さに対する制約を取得または設定します。</summary>
+      <returns>このバインディングを使用して設定されるエンドポイントにより処理可能な、SOAP メッセージの複雑さに対する制約。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.Scheme">
+      <summary>このバインドで構成されたチャネルとリスナーのための URI トランスポート スキームを取得します。</summary>
+      <returns>このバインディングで構成されたチャネルとリスナーのための URI トランスポート スキーム。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.TextEncoding">
+      <summary>メッセージ テキストで使用される文字エンコーディングを取得または設定します。</summary>
+      <returns>メッセージ テキストに使用される文字エンコーディング。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.TransferMode">
+      <summary>メッセージがバッファーされて送信されるか、ストリーム配信されるかを示す値を取得または設定します。</summary>
+      <returns>メッセージが送信時にバッファーまたはストリーミングされたかどうかを示す <see cref="T:System.ServiceModel.TransferMode" /> の列挙値の 1 つ。</returns>
+    </member>
+    <member name="T:System.ServiceModel.HttpClientCredentialType">
+      <summary>HTTP クライアントの有効な資格情報の種類を列挙します。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Basic">
+      <summary>基本認証を指定します。詳細については、「RFC 2617 – HTTP Authentication: Basic and Digest Authentication」を参照してください。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Certificate">
+      <summary>証明書を使用するクライアント認証を指定します。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Digest">
+      <summary>ダイジェスト認証を指定します。詳細については、「RFC 2617 – HTTP Authentication: Basic and Digest Authentication」を参照してください。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.InheritedFromHost">
+      <summary>認証はホストから継承されます。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.None">
+      <summary>匿名認証を指定します。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Ntlm">
+      <summary>NTLM を使用するクライアント認証を指定します。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Windows">
+      <summary>Windows を使用するクライアント認証を指定します。</summary>
+    </member>
+    <member name="T:System.ServiceModel.HttpTransportSecurity">
+      <summary>
+        <see cref="T:System.ServiceModel.WSHttpBinding" /> のトランスポート レベルのセキュリティ設定を表します。</summary>
+    </member>
+    <member name="M:System.ServiceModel.HttpTransportSecurity.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.HttpTransportSecurity" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="P:System.ServiceModel.HttpTransportSecurity.ClientCredentialType">
+      <summary>認証で使用されるクライアント資格情報の種類を取得または設定します。</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.HttpClientCredentialType" /> を返します。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">プロパティが未定義の値に設定されています。</exception>
+    </member>
+    <member name="T:System.ServiceModel.NetHttpBinding">
+      <summary>
+        <see cref="T:System.ServiceModel.NetHttpBinding" /> の設定を指定します。</summary>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.NetHttpBinding" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor(System.ServiceModel.BasicHttpSecurityMode)">
+      <summary>指定したセキュリティ モードを使用して、<see cref="T:System.ServiceModel.NetHttpBinding" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="securityMode">セキュリティのモード。</param>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor(System.String)">
+      <summary>構成名を指定して、<see cref="T:System.ServiceModel.NetHttpBinding" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="configurationName">構成の名前。</param>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.BuildChannelFactory``1(System.ServiceModel.Channels.BindingParameterCollection)">
+      <summary>指定した種類のチャネルを作成し、バインド パラメーターのコレクションで指定されている機能を満たすチャネル ファクトリ スタックを、クライアント上に構築します。</summary>
+      <returns>コレクションによって指定される機能を満たすチャネル ファクトリ。</returns>
+      <param name="parameters">作成されるチャネル ファクトリの要件を指定するパラメーターのコレクション。</param>
+      <typeparam name="TChannel">チャネル ファクトリが作成するチャネルの種類。</typeparam>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.CreateBindingElements">
+      <summary>バインド用のバインド要素を含むコレクションを作成します。</summary>
+      <returns>バインドを構築するバインド要素のコレクション。</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.MessageEncoding">
+      <summary>メッセージをエンコードするために使用されるメッセージ エンコーディングの種類を取得または設定します。</summary>
+      <returns>メッセージをエンコードするために使用されるメッセージ エンコーディングの型。</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.Security">
+      <summary>バインディングで構成されたサービスで使用するセキュリティを取得または設定します。</summary>
+      <returns>バインディングで構成されたサービスで使用されるセキュリティ。</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.WebSocketSettings">
+      <summary>WebSocket の設定を取得します。</summary>
+      <returns>ｗebsocket の設定。</returns>
+    </member>
+    <member name="T:System.ServiceModel.NetHttpMessageEncoding">
+      <summary>NET Http のメッセージ エンコーディングを指定します。</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Binary">
+      <summary>バイナリ メッセージ エンコーディング。</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Mtom">
+      <summary>Mtom メッセージ エンコーディング。</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Text">
+      <summary>テキスト メッセージ エンコーディング。</summary>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpRequestMessageProperty">
+      <summary>HTTP プロトコル経由の要求に利用できる追加情報にアクセスおよび応答するために、HTTP 要求へのアクセスを提供します。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpRequestMessageProperty.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpRequestMessageProperty" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Headers">
+      <summary>HTTP 要求から HTTP ヘッダーを取得します。</summary>
+      <returns>HTTP 要求の HTTP ヘッダーを格納している <see cref="T:System.Net.WebHeaderCollection" /> を返します。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Method">
+      <summary>HTTP 要求の HTTP 動詞を取得または設定します。</summary>
+      <returns>HTTP 要求の HTTP 動詞。</returns>
+      <exception cref="T:System.ArgumentNullException">値が null に設定されています。</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Name">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpRequestMessageProperty" /> クラスに関連付けられているメッセージ プロパティの名前を取得します。</summary>
+      <returns>値 "httpRequest"。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.QueryString">
+      <summary>HTTP 要求に対するクエリ文字列を取得または設定します。</summary>
+      <returns>HTTP 要求からのクエリ文字列。</returns>
+      <exception cref="T:System.ArgumentNullException">値が null に設定されています。</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.SuppressEntityBody">
+      <summary>メッセージの本文を無視してヘッダーのみを送信するかどうかを示す値を取得または設定します。</summary>
+      <returns>メッセージ本文を抑制する場合は true、それ以外の場合は false。既定値は、false です。</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpRequestMessageProperty.System#ServiceModel#Channels#IMessageProperty#CreateCopy">
+      <summary>現在のオブジェクトのコピーを作成して返します。</summary>
+      <returns>現在のオブジェクトのコピーを表す <see cref="T:System.ServiceModel.Channels.IMessageProperty" /> オブジェクト。</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpResponseMessageProperty">
+      <summary>HTTP プロトコル経由の要求に利用できる追加情報にアクセスおよび応答するために、HTTP 応答へのアクセスを提供します。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpResponseMessageProperty.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpResponseMessageProperty" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.Headers">
+      <summary>HTTP 応答から HTTP ヘッダーを取得します。</summary>
+      <returns>HTTP 応答の HTTP ヘッダーを格納している <see cref="T:System.Net.WebHeaderCollection" /> を返します。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.Name">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpResponseMessageProperty" /> クラスに関連付けられているメッセージ プロパティの名前を取得します。</summary>
+      <returns>"httpResponse" を返します。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusCode">
+      <summary>このプロパティが添付される現在の HTTP 応答のステータス コードを取得または設定します。</summary>
+      <returns>HTTP 応答で送信する <see cref="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusCode" /> を返します。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">100 未満または 599 より大きい値が設定されています。</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusDescription">
+      <summary>このプロパティが添付される現在の HTTP 応答のステータス コードの説明を取得または設定します。</summary>
+      <returns>HTTP 応答で送信する <see cref="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusDescription" /> を返します。</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpResponseMessageProperty.System#ServiceModel#Channels#IMessageProperty#CreateCopy">
+      <summary>現在のインスタンスの新しいコピーを作成します。</summary>
+      <returns>現在のインスタンスの型 <see cref="T:System.ServiceModel.Channels.IMessageProperty" /> の新しく作成されたコピー。</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpsTransportBindingElement">
+      <summary>メッセージ送信用の HTTPS トランスポートを指定するために使用するバインド要素を表します。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.#ctor(System.ServiceModel.Channels.HttpsTransportBindingElement)">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="elementToBeCloned">
+        <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" /> クラスのインスタンス。</param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.BuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>チャネルの作成に使用できる、指定した種類のチャネル ファクトリを作成します。</summary>
+      <returns>トランスポート バインド要素で設定されている値に基づいて構成された、指定した種類のチャネル ファクトリ。</returns>
+      <param name="context">バインド、動作、コントラクト、およびチャネル ファクトリの作成に必要なその他の情報を記述する <see cref="T:System.ServiceModel.Channels.BindingContext" /> メンバー。</param>
+      <typeparam name="TChannel">チャネルの種類。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="context" /> に null は指定できません。</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.Clone">
+      <summary>現在のバインディング要素のコピーを作成します。</summary>
+      <returns>現在のバインディング要素のコピー。</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.GetProperty``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.BindingContext" /> から指定したオブジェクトを取得します。</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.Channels.BindingContext" /> から取得した指定オブジェクト。オブジェクトが見つからない場合は null。</returns>
+      <param name="context">
+        <see cref="T:System.ServiceModel.Channels.BindingContext" />
+      </param>
+      <typeparam name="T">取得するオブジェクト。</typeparam>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpsTransportBindingElement.Scheme">
+      <summary>トランスポートの URI スキームを返します。</summary>
+      <returns>トランスポートの URI スキームを返します。"HTTPS" です。</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpTransportBindingElement">
+      <summary>メッセージ送信用の HTTP トランスポートを指定するために使用するバインド要素を表します。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.#ctor(System.ServiceModel.Channels.HttpTransportBindingElement)">
+      <summary>別のバインディング要素を使用して <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="elementToBeCloned">このインスタンスを初期化するために使用する <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" /> オブジェクト。</param>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.AllowCookies">
+      <summary>クライアントがクッキーを受け入れて、それらを今後の要求に反映させるかどうかを示す値を取得または設定します。</summary>
+      <returns>クッキーが許可される場合は true。それ以外の場合は false。既定値は、false です。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.AuthenticationScheme">
+      <summary>HTTP リスナーにより処理されるクライアント要求の認証に使用する認証スキームを取得または設定します。</summary>
+      <returns>クライアント認証に使用するプロトコルを指定する <see cref="T:System.Net.AuthenticationSchemes" /> 列挙の列挙値の 1 つ。既定値は、<see cref="F:System.Net.AuthenticationSchemes.Anonymous" /> です。</returns>
+      <exception cref="T:System.ArgumentException">
+        <see cref="T:System.Net.AuthenticationSchemes" /> の値は既に設定されています。</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.BuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>チャネルを作成するために使用できるチャネル ファクトリを作成します。</summary>
+      <returns>指定した種類のチャネル ファクトリ。</returns>
+      <param name="context">バインド、動作、コントラクト、およびチャネル ファクトリの作成に必要なその他の情報を記述する <see cref="T:System.ServiceModel.Channels.BindingContext" /> メンバー。</param>
+      <typeparam name="TChannel">チャネル ファクトリの種類。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="context" /> に null は指定できません。</exception>
+      <exception cref="T:System.ArgumentException">無効な引数が渡されました。</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.CanBuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>指定した種類のチャネル ファクトリを作成できるかどうかを判断します。</summary>
+      <returns>チャネル ファクトリを作成できる場合は true、それ以外の場合は false。</returns>
+      <param name="context">チャネルの <see cref="T:System.ServiceModel.Channels.BindingContext" />。</param>
+      <typeparam name="TChannel">チェックするチャネルの種類。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="context" /> は null なので、</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.Clone">
+      <summary>現在のバインディング要素のコピーである新しいインスタンスを作成します。</summary>
+      <returns>現在のバインディング要素のコピーである新しいインスタンス。</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.GetProperty``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>指定した <see cref="T:System.ServiceModel.Channels.BindingContext" /> からプロパティを取得します。</summary>
+      <returns>指定した <see cref="T:System.ServiceModel.Channels.BindingContext" /> のプロパティ。</returns>
+      <param name="context">
+        <see cref="T:System.ServiceModel.Channels.BindingContext" />
+      </param>
+      <typeparam name="T">取得するプロパティの型。</typeparam>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.MaxBufferSize">
+      <summary>使用するバッファーの最大サイズを取得または設定します。バッファーされるメッセージの場合、この値は <see cref="P:System.ServiceModel.Channels.TransportBindingElement.MaxReceivedMessageSize" /> と同じです。ストリーム メッセージの場合は、この値は SOAP ヘッダーの最大サイズであり、これはバッファー モードで読み取られる必要があります。</summary>
+      <returns>バッファーの最大サイズ (バイト単位)。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.Scheme">
+      <summary>トランスポートの URI スキームを取得します。</summary>
+      <returns>トランスポートの URI スキームを表す <see cref="F:System.Uri.UriSchemeHttp" /> オブジェクト。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.TransferMode">
+      <summary>転送モードを取得または設定します。</summary>
+      <returns>次に示す <see cref="P:System.ServiceModel.Channels.HttpTransportBindingElement.TransferMode" /> のメンバー値のいずれか。BufferedStreamedStreamedRequestStreamedResponse</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.WebSocketSettings">
+      <summary>バインディング要素の Web ソケットの構成を取得または設定します。</summary>
+      <returns>Web ソケット設定。</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.IHttpCookieContainerManager">
+      <summary>クッキーのコンテナー マネージャーを表します。</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.IHttpCookieContainerManager.CookieContainer">
+      <summary>クッキー コンテナーを取得または設定します。</summary>
+      <returns>クッキー コンテナー。</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.WebSocketTransportSettings">
+      <summary>Web ソケット トランスポートの設定を表します。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.WebSocketTransportSettings" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportSettings.BinaryMessageReceivedAction">
+      <summary>Web ソケット メッセージを受信したときのアクションを指定します。</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.DisablePayloadMasking">
+      <summary>Web ソケット マスキングが無効かどうかを示す値を取得または設定します。</summary>
+      <returns>Web ソケットのマスクが無効化されている場合は true。それ以外の場合は false。</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.Equals(System.Object)">
+      <summary>指定したオブジェクトが現在のオブジェクトと等しいかどうかを判断します。</summary>
+      <returns>指定したオブジェクトが現在のオブジェクトと等しい場合は true、それ以外の場合は false。</returns>
+      <param name="obj">現在のオブジェクトと比較するオブジェクト。</param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.Equals(System.ServiceModel.Channels.WebSocketTransportSettings)">
+      <summary>指定した Web ソケット トランスポート設定オブジェクトが現在のオブジェクトと等しいかどうかを判断します。</summary>
+      <returns>指定したオブジェクトが現在のオブジェクトと等しい場合は true、それ以外の場合は false。</returns>
+      <param name="other">現在のオブジェクトと比較する Web ソケット トランスポート設定オブジェクト。</param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.GetHashCode">
+      <summary>このオブジェクトのハッシュ コード値を取得します。</summary>
+      <returns>このオブジェクトのハッシュ コード値。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.KeepAliveInterval">
+      <summary>接続の Keep Alive 間隔の値を取得または設定します。</summary>
+      <returns>接続の Keep Alive 間隔の値。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.SubProtocol">
+      <summary>Web ソケット サブプロトコルを取得または設定します。</summary>
+      <returns>Web ソケット サブプロトコル。</returns>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportSettings.TextMessageReceivedAction">
+      <summary>Web ソケット テキスト メッセージを受信したときのアクションを指定します。</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.TransportUsage">
+      <summary>Web ソケット トランスポートの使用を取得または設定します。</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.Channels.WebSocketTransportUsage" /> 列挙値の 1 つ。</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.WebSocketTransportUsage">
+      <summary>WebSocket トランスポートの使用の列挙を指定します。</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.Always">
+      <summary>WebSocket トランスポートが常に使用されることを示します。</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.Never">
+      <summary>WebSocket トランスポートが使用されないことを示します。</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.WhenDuplex">
+      <summary>WebSocket トランスポートが双方向のサービス コントラクトのみに使用されることを示します。</summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,404 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.ServiceModel.Http</name>
+  </assembly>
+  <members>
+    <member name="T:System.ServiceModel.BasicHttpBinding">
+      <summary>Представляет собой привязку, которую служба Windows Communication Foundation (WCF) может использовать для настройки и предоставления конечных точек, которые могут взаимодействовать с веб-службами и клиентами ASMX, а также с другими службами, соответствующими требованиям WS-I Basic Profile 1.1.</summary>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.ServiceModel.BasicHttpBinding" />.</summary>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.#ctor(System.ServiceModel.BasicHttpSecurityMode)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.ServiceModel.BasicHttpBinding" /> с указанным типом безопасности, используемым привязкой.</summary>
+      <param name="securityMode">Значение <see cref="T:System.ServiceModel.BasicHttpSecurityMode" />, указывающее тип безопасности, используемый с сообщением SOAP и для клиента.</param>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.BuildChannelFactory``1(System.ServiceModel.Channels.BindingParameterCollection)">
+      <summary>Выполняет построение на клиенте стека фабрики каналов, создающего каналы заданного типа и удовлетворяющего заданным коллекцией привязки параметрам.</summary>
+      <returns>Объект <see cref="T:System.ServiceModel.Channels.IChannelFactory`1" /> типа <paramref name="TChannel" />, удовлетворяющий заданным коллекцией параметрам.</returns>
+      <param name="parameters">Указывает требования для построения фабрики каналов.</param>
+      <typeparam name="TChannel">Тип канала, создаваемого фабрикой каналов.</typeparam>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.CreateBindingElements">
+      <summary>Создает и возвращает упорядоченную коллекцию элементов привязки, содержащихся в текущей привязке.</summary>
+      <returns>Коллекция <see cref="T:System.ServiceModel.Channels.BindingElementCollection" />, содержащая упорядоченный стек элементов привязки, описываемых в <see cref="T:System.ServiceModel.BasicHttpBinding" />.</returns>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpBinding.Security">
+      <summary>Возвращает тип безопасности, используемый с данной привязкой.  </summary>
+      <returns>Объект <see cref="T:System.ServiceModel.BasicHttpSecurity" />, используемый с этой привязкой.Значение по умолчанию — <see cref="F:System.ServiceModel.BasicHttpSecurityMode.None" />.</returns>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpMessageCredentialType">
+      <summary>Перечисляет типы учетных данных, которые можно использовать для проверки подлинности клиента, когда в привязке BasicHttpBinding включена безопасность.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpMessageCredentialType.Certificate">
+      <summary>Указывает, что проверка подлинности клиента осуществляется с помощью сертификата. </summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpMessageCredentialType.UserName">
+      <summary>Указывает, что проверка подлинности клиента осуществляется с помощью имени пользователя. </summary>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpSecurity">
+      <summary>Настраивает параметры безопасности привязки basicHttpBinding.</summary>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpSecurity.Mode">
+      <summary>Возвращает или задает режим безопасности для привязки basicHttpBinding.</summary>
+      <returns>Значение из перечисления <see cref="T:System.ServiceModel.BasicHttpSecurityMode" />.Значение этого свойства по умолчанию — <see cref="F:System.ServiceModel.BasicHttpSecurityMode.None" />.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">Заданное значение является недопустимым значением для <see cref="T:System.ServiceModel.BasicHttpSecurityMode" />.</exception>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpSecurity.Transport">
+      <summary>Получает параметры безопасности транспортного уровня для привязки basicHttpBinding.</summary>
+      <returns>Параметры безопасности транспортного уровня для привязки basicHttpBinding.</returns>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpSecurityMode">
+      <summary>Задает типы безопасности, которые можно использовать с предоставленной системой привязкой <see cref="T:System.ServiceModel.BasicHttpBinding" />.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.Message">
+      <summary>Безопасность обеспечивается с помощью средств безопасности сообщений SOAP.Для привязки <see cref="T:System.ServiceModel.BasicHttpBinding" /> система требует, чтобы клиенту был отдельно предоставлен сертификат сервера.Допустимые типы учетных данных клиента для этой привязки: UserName и Certificate.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.None">
+      <summary>Во время передачи сообщение SOAP незащищено.Это поведение установлено по умолчанию.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.Transport">
+      <summary>Безопасность обеспечивается с помощью протокола HTTPS.Служба должна быть настроена с использованием SSL-сертификатов.Сообщение SOAP защищается как единое целое с помощью HTTPS.Служба проходит проверку подлинности в клиенте с использованием SSL-сертификата.Проверка подлинности клиента контролируется <see cref="P:System.ServiceModel.HttpTransportSecurity.ClientCredentialType" />.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.TransportCredentialOnly">
+      <summary>Данный режим не обеспечивает целостности и конфиденциальности сообщений.Он обеспечивает только проверку подлинности клиента на основе HTTP.Этот режим следует использовать с осторожностью.Он должен применяться в тех средах, где безопасность передачи обеспечивается другими средствами (например IPSec), а инфраструктура Windows Communication Foundation (WCF) обеспечивает только проверку подлинности клиента.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.TransportWithMessageCredential">
+      <summary>Целостность, конфиденциальность и проверка подлинности сервера обеспечиваются с помощью HTTPS.Служба должна быть настроена с использованием сертификата.Проверка подлинности клиента осуществляется при помощи механизма безопасности сообщений SOAP.Данный режим может использоваться, когда проверка подлинности клиента осуществляется с учетными данными типа имени пользователя или сертификата и существует развернутый канал HTTPS с обеспечением безопасности при передаче сообщений.</summary>
+    </member>
+    <member name="T:System.ServiceModel.HttpBindingBase">
+      <summary>Указывает базовую привязку HTTP.</summary>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.AllowCookies">
+      <summary>Возвращает или задает значение, определяющее, принимает ли клиент файлы cookie и распространяет ли он их на будущие запросы.</summary>
+      <returns>Значение true, если файлы cookie разрешены; в противном случае — значение false.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.EnvelopeVersion">
+      <summary>Возвращает версию протокола SOAP, используемого для сообщений, обрабатываемых этой привязкой.</summary>
+      <returns>Версия протокола SOAP, используемого для сообщений, обрабатываемых этой привязкой.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxBufferPoolSize">
+      <summary>Получает или задает число, определяющее максимальный объем (в байтах) памяти, выделяемый диспетчером буфера сообщений, принимающим сообщения из канала.</summary>
+      <returns>Максимальный объем памяти (в байтах), выделяемый диспетчером буферов сообщений, принимающих сообщения из канала.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxBufferSize">
+      <summary>Получает или задает максимальный размер (в байтах) буфера, который получает сообщения из канала.</summary>
+      <returns>Максимальный размер (в байтах) буфера, который получает сообщения из канала.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxReceivedMessageSize">
+      <summary>Получает или задает максимальный размер (в байтах) сообщения, которое можно получить по каналу, настроенному с этой привязкой.</summary>
+      <returns>Максимальный размер (в байтах) сообщения, которое можно получить по каналу, настроенному с использованием этой привязки.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.ReaderQuotas">
+      <summary>Получает или задает ограничения по сложности сообщений SOAP, которые могут обрабатываться конечными точками, настроенными с этой привязкой.</summary>
+      <returns>Ограничения по сложности сообщений SOAP, которые могут обрабатываться конечными точками, настроенными с помощью этой привязки.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.Scheme">
+      <summary>Возвращает схему транспорта URI для каналов и прослушивателей, настроенных с этой привязкой.</summary>
+      <returns>Схема транспорта универсального кода ресурса (URI) для каналов и прослушивателей, настроенных с этой привязкой.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.TextEncoding">
+      <summary>Возвращает или задает кодировку, используемую в тексте сообщений.</summary>
+      <returns>Кодировка символов, используемая в тексте сообщений.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.TransferMode">
+      <summary>Возвращает или задает значение, указывающее, следует ли буферизировать отправляемые сообщения или передавать их потоком.</summary>
+      <returns>Одно из значений перечисления <see cref="T:System.ServiceModel.TransferMode" />, указывающее, следует ли буферизировать отправляемые сообщения или передавать их потоком.</returns>
+    </member>
+    <member name="T:System.ServiceModel.HttpClientCredentialType">
+      <summary>Перечисляет допустимые типы учетных данных для клиентов HTTP.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Basic">
+      <summary>Задает обычную проверку подлинности.Дополнительные сведения см. документе RFC 2617 – HTTP Аутентификация HTTP: обычная и дайджест-аутентификация.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Certificate">
+      <summary>Задает проверку подлинности клиента с использованием сертификата.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Digest">
+      <summary>Задает дайджест-проверку подлинности.Дополнительные сведения см. документе RFC 2617 – HTTP Аутентификация HTTP: обычная и дайджест-аутентификация.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.InheritedFromHost">
+      <summary>Аутентификация наследуется от узла.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.None">
+      <summary>Указывает анонимную проверку подлинности.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Ntlm">
+      <summary>Задает проверку подлинности клиента с использованием NTLM.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Windows">
+      <summary>Задает проверку подлинности клиента с использованием Windows.</summary>
+    </member>
+    <member name="T:System.ServiceModel.HttpTransportSecurity">
+      <summary>Представляет параметры безопасности транспортного уровня для привязки <see cref="T:System.ServiceModel.WSHttpBinding" />.</summary>
+    </member>
+    <member name="M:System.ServiceModel.HttpTransportSecurity.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.ServiceModel.HttpTransportSecurity" />.</summary>
+    </member>
+    <member name="P:System.ServiceModel.HttpTransportSecurity.ClientCredentialType">
+      <summary>Возвращает или задает тип учетных данных клиента, используемых для проверки подлинности.</summary>
+      <returns>Возвращает <see cref="T:System.ServiceModel.HttpClientCredentialType" />.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">Задает для свойства неопределенное значение.</exception>
+    </member>
+    <member name="T:System.ServiceModel.NetHttpBinding">
+      <summary>Задает параметры для <see cref="T:System.ServiceModel.NetHttpBinding" />.</summary>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.ServiceModel.NetHttpBinding" />.</summary>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor(System.ServiceModel.BasicHttpSecurityMode)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.ServiceModel.NetHttpBinding" /> с указанным режимом безопасности.</summary>
+      <param name="securityMode">Режим безопасности.</param>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor(System.String)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.ServiceModel.NetHttpBinding" /> с указанным именем конфигурации.</summary>
+      <param name="configurationName">Имя конфигурации.</param>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.BuildChannelFactory``1(System.ServiceModel.Channels.BindingParameterCollection)">
+      <summary>Выполняет построение на клиенте стека фабрики каналов, создающего каналы заданного типа и удовлетворяющего заданным коллекцией привязки параметрам.</summary>
+      <returns>Фабрика каналов, соответствующая требованиям, заданным коллекцией.</returns>
+      <param name="parameters">Коллекция параметров, указывающая требования для построения фабрики каналов.</param>
+      <typeparam name="TChannel">Тип канала, создаваемого фабрикой каналов.</typeparam>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.CreateBindingElements">
+      <summary>Создает коллекцию, содержащую элементы привязки для привязки.</summary>
+      <returns>Коллекция элементов привязки, составляющих привязку.</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.MessageEncoding">
+      <summary>Получает или задает тип кодирования сообщений, используемый для кодирования сообщения.</summary>
+      <returns>Кип кодирования сообщений, используемый для кодирования сообщения.</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.Security">
+      <summary>Получает или задает безопасность, используемую настроенными с привязкой службами.</summary>
+      <returns>Безопасность, используемая со службами, настроенными с этой привязкой.</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.WebSocketSettings">
+      <summary>Получает параметры WebSocket.</summary>
+      <returns>Параметры WebSocket.</returns>
+    </member>
+    <member name="T:System.ServiceModel.NetHttpMessageEncoding">
+      <summary>Определяет кодировку сообщения Net Http.</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Binary">
+      <summary>Двоичное кодирование сообщений.</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Mtom">
+      <summary>Кодирование сообщений Mtom.</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Text">
+      <summary>Кодирование текстовых сообщений.</summary>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpRequestMessageProperty">
+      <summary>Предоставляет доступ к HTTP-запросу на получение доступа к дополнительным сведениям, которые становятся доступными для запросов, отправляемых через протокол HTTP, и предоставление ответа на эти сведения.</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpRequestMessageProperty.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.ServiceModel.Channels.HttpRequestMessageProperty" />.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Headers">
+      <summary>Возвращает заголовки HTTP из HTTP-запроса.</summary>
+      <returns>Возвращает объект <see cref="T:System.Net.WebHeaderCollection" />, содержащий заголовки HTTP из HTTP-запроса.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Method">
+      <summary>Возвращает или задает команду HTTP для HTTP-запроса.</summary>
+      <returns>Команда HTTP для HTTP-запроса.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение установлено равным null.</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Name">
+      <summary>Возвращает имя свойства сообщения, связанное с классом <see cref="T:System.ServiceModel.Channels.HttpRequestMessageProperty" />.</summary>
+      <returns>Значение "httpRequest".</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.QueryString">
+      <summary>Возвращает или задает строку запроса для HTTP-запроса.</summary>
+      <returns>Строка запроса из HTTP-запроса.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение установлено равным null.</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.SuppressEntityBody">
+      <summary>Возвращает или задает значение, указывающее, пропускается ли текст сообщения (в этом случае отправляются только его заголовки).</summary>
+      <returns>Значение true, если тело сообщения подавляется; в противном случае — значение false.Значение по умолчанию — false.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpRequestMessageProperty.System#ServiceModel#Channels#IMessageProperty#CreateCopy">
+      <summary>Создает и возвращает копию текущего объекта.</summary>
+      <returns>Объект <see cref="T:System.ServiceModel.Channels.IMessageProperty" />, представляющий копию текущего объекта.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpResponseMessageProperty">
+      <summary>Предоставляет доступ к HTTP-ответу для получения доступа к дополнительным сведениям, предоставляемым для запросов по протоколу HTTP, и реагирования на эти сведения. </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpResponseMessageProperty.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.ServiceModel.Channels.HttpResponseMessageProperty" />.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.Headers">
+      <summary>Возвращает HTTP-заголовки из HTTP-ответа.</summary>
+      <returns>Возвращает объект <see cref="T:System.Net.WebHeaderCollection" />, содержащий HTTP-заголовки из HTTP-ответа.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.Name">
+      <summary>Возвращает имя свойства сообщения, связанное с классом <see cref="T:System.ServiceModel.Channels.HttpResponseMessageProperty" />.</summary>
+      <returns>Возвращает "httpResponse".</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusCode">
+      <summary>Возвращает или задает код состояния текущего HTTP-ответа, к которому присоединено это свойство.</summary>
+      <returns>Возвращает свойство <see cref="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusCode" />, отправляемое в HTTP-ответе.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">Заданное значение меньше 100 или больше 599.</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusDescription">
+      <summary>Возвращает или задает описание состояния текущего HTTP-ответа, к которому присоединено это свойство.</summary>
+      <returns>Возвращает свойство <see cref="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusDescription" />, отправляемое в HTTP-ответе.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpResponseMessageProperty.System#ServiceModel#Channels#IMessageProperty#CreateCopy">
+      <summary>Создает новую копию текущего экземпляра.</summary>
+      <returns>Новая копия типа <see cref="T:System.ServiceModel.Channels.IMessageProperty" /> текущего экземпляра.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpsTransportBindingElement">
+      <summary>Представляет элемент привязки, который используется, чтобы указать транспорт HTTPS для передачи сообщений. </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" />.  </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.#ctor(System.ServiceModel.Channels.HttpsTransportBindingElement)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" />. </summary>
+      <param name="elementToBeCloned">Экземпляр класса <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" />. </param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.BuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>Создает фабрику каналов заданного типа, которая может использоваться для создания канала.</summary>
+      <returns>Фабрика каналов заданного типа, настроенная на основе значений, которые указаны в элементе привязки транспорта.</returns>
+      <param name="context">Элементы объекта <see cref="T:System.ServiceModel.Channels.BindingContext" />, описывающие привязки, поведения, контракты и предоставляющие другие сведения, необходимые для создания фабрики каналов.</param>
+      <typeparam name="TChannel">Тип канала.</typeparam>
+      <exception cref="T:System.ArgumentNullException">Аргумент <paramref name="context" /> не может иметь значение null.</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.Clone">
+      <summary>Создает копию текущего элемента привязки.</summary>
+      <returns>Копия текущего элемента привязки.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.GetProperty``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>Возвращает указанный объект из объекта <see cref="T:System.ServiceModel.Channels.BindingContext" />.</summary>
+      <returns>Указанный объект из объекта <see cref="T:System.ServiceModel.Channels.BindingContext" /> или null, если объект не найден.</returns>
+      <param name="context">Объект <see cref="T:System.ServiceModel.Channels.BindingContext" />.</param>
+      <typeparam name="T">Возвращаемый объект.</typeparam>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpsTransportBindingElement.Scheme">
+      <summary>Возвращает схему универсального кода ресурса (URI) для транспорта.</summary>
+      <returns>Возвращает схему URI для транспорта, в данном случае "HTTPS".</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpTransportBindingElement">
+      <summary>Представляет элемент привязки, который используется, чтобы указать HTTP-транспорт для передачи сообщений. </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" />. </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.#ctor(System.ServiceModel.Channels.HttpTransportBindingElement)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" /> с помощью другого элемента привязки.</summary>
+      <param name="elementToBeCloned">Объект <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" />, который используется для инициализации этого экземпляра.</param>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.AllowCookies">
+      <summary>Возвращает или задает значение, определяющее, принимает ли клиент файлы cookie и распространяет ли он их на будущие запросы.</summary>
+      <returns>Значение true, если файлы cookie разрешены; в противном случае — значение false.Значение по умолчанию — false.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.AuthenticationScheme">
+      <summary>Возвращает или задает схему проверки подлинности, при помощи которой выполняется проверка подлинности клиентских запросов, обрабатываемых прослушивателем HTTP.</summary>
+      <returns>Одно из значений перечисления <see cref="T:System.Net.AuthenticationSchemes" />, в котором указываются протоколы, используемые для аутентификации клиента.Значение по умолчанию — <see cref="F:System.Net.AuthenticationSchemes.Anonymous" />.</returns>
+      <exception cref="T:System.ArgumentException">Значение перечисления <see cref="T:System.Net.AuthenticationSchemes" /> уже задано.</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.BuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>Создает фабрику каналов, которая может служить для создания канала.</summary>
+      <returns>Фабрика каналов заданного типа.</returns>
+      <param name="context">Элементы объекта <see cref="T:System.ServiceModel.Channels.BindingContext" />, описывающие привязки, поведения, контракты и предоставляющие другие сведения, необходимые для создания фабрики каналов.</param>
+      <typeparam name="TChannel">Тип фабрики каналов.</typeparam>
+      <exception cref="T:System.ArgumentNullException">Аргумент <paramref name="context" /> не может иметь значение null.</exception>
+      <exception cref="T:System.ArgumentException">Передан недопустимый аргумент.</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.CanBuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>Определяет, можно ли создать фабрику каналов заданного типа.</summary>
+      <returns>Значение true, если можно создать фабрику каналов; в противном случае — значение false.</returns>
+      <param name="context">Контекст <see cref="T:System.ServiceModel.Channels.BindingContext" /> для канала.</param>
+      <typeparam name="TChannel">Тип проверяемого канала.</typeparam>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="context" /> имеет значение null.</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.Clone">
+      <summary>Создает новый экземпляр, который является копией текущего элемента привязки.</summary>
+      <returns>Новый экземпляр, который является копией текущего элемента привязки.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.GetProperty``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>Возвращает свойство из указанного объекта <see cref="T:System.ServiceModel.Channels.BindingContext" />.</summary>
+      <returns>Свойство из указанного объекта <see cref="T:System.ServiceModel.Channels.BindingContext" />.</returns>
+      <param name="context">Объект <see cref="T:System.ServiceModel.Channels.BindingContext" />.</param>
+      <typeparam name="T">Тип возвращаемого свойства.</typeparam>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.MaxBufferSize">
+      <summary>Получает или задает максимальный размер используемого буфера.Для буферизованных сообщений это значение будет совпадать со значением свойства <see cref="P:System.ServiceModel.Channels.TransportBindingElement.MaxReceivedMessageSize" />.Для потоковых сообщений это значение равно максимальному размеру заголовков SOAP, считываемых в режиме буферизации.</summary>
+      <returns>Максимальный размер буфера в байтах. </returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.Scheme">
+      <summary>Возвращает схему универсального кода ресурса (URI) для транспорта.</summary>
+      <returns>Объект <see cref="F:System.Uri.UriSchemeHttp" />, представляющий схему универсального кода ресурса (URI) для транспорта.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.TransferMode">
+      <summary>Возвращает или задает режим передачи.</summary>
+      <returns>Одно из следующих значений свойства <see cref="P:System.ServiceModel.Channels.HttpTransportBindingElement.TransferMode" />.BufferedStreamedStreamedRequestStreamedResponse</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.WebSocketSettings">
+      <summary>Получает или задает конфигурацию веб-сокета элемента привязки.</summary>
+      <returns>Параметры веб-сокета.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.IHttpCookieContainerManager">
+      <summary>Представляет диспетчер контейнера файлов cookie.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.IHttpCookieContainerManager.CookieContainer">
+      <summary>Получает или задает контейнер файлов cookie.</summary>
+      <returns>Контейнер файлов cookie.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.WebSocketTransportSettings">
+      <summary>Представляет параметры для транспорта веб-сокета.</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.ServiceModel.Channels.WebSocketTransportSettings" />.</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportSettings.BinaryMessageReceivedAction">
+      <summary>Определяет действие после принятия двоичного сообщения веб-сокета.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.DisablePayloadMasking">
+      <summary>Получает или задает значение, указывающее, отключен ли режим маски веб-сокетов.</summary>
+      <returns>Значение true, если маскирование веб-сокета отключено; в противном случае — значение false.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.Equals(System.Object)">
+      <summary>Определяет, равен ли заданный объект текущему объекту.</summary>
+      <returns>Значение true, если заданный объект равен текущему объекту; в противном случае — значение false.</returns>
+      <param name="obj">Объект, который требуется сравнить с текущим объектом.</param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.Equals(System.ServiceModel.Channels.WebSocketTransportSettings)">
+      <summary>Определяет, равен ли заданный объект параметров транспорта веб-сокета текущему объекту.</summary>
+      <returns>Значение true, если заданный объект равен текущему объекту; в противном случае — значение false.</returns>
+      <param name="other">Объект параметров транспорта веб-сокета, который требуется сравнить с текущим объектом.</param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.GetHashCode">
+      <summary>Получает значение хэш-кода для данного объекта.</summary>
+      <returns>Значение хэш-кода для этого объекта.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.KeepAliveInterval">
+      <summary>Получает или задает значение интервала проверки активности подключения.</summary>
+      <returns>значение интервала проверки активности подключения.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.SubProtocol">
+      <summary>Получает или задает подпротокол веб-сокета.</summary>
+      <returns>Подпротокол веб-сокета.</returns>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportSettings.TextMessageReceivedAction">
+      <summary>Определяет действие после принятия текстового сообщения веб-сокета.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.TransportUsage">
+      <summary>Получает или задает характер транспортного использования веб-сокета.</summary>
+      <returns>Одно из значений перечисления <see cref="T:System.ServiceModel.Channels.WebSocketTransportUsage" />.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.WebSocketTransportUsage">
+      <summary>Определяет перечисление использования транспорта WebSocket.</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.Always">
+      <summary>Указывает, что всегда используется транспорт WebSocket.</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.Never">
+      <summary>Указывает, что транспорт WebSocket не будет использоваться никогда.</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.WhenDuplex">
+      <summary>Указывает, что транспорт WebSocket будет использоваться только для дуплексных контрактов службы.</summary>
+    </member>
+  </members>
+</doc>

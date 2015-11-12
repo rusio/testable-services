@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.ServiceModel.Http</name>
+  </assembly>
+  <members>
+    <member name="T:System.ServiceModel.BasicHttpBinding">
+      <summary>WCF(Windows Communication Foundation) 서비스가 ASMX 기반 웹 서비스 및 클라이언트, 그리고 WS-I Basic Profile 1.1을 따르는 기타 서비스와 통신할 수 있는 끝점을 구성 및 노출하는 데 사용할 수 있는 바인딩을 나타냅니다.</summary>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.BasicHttpBinding" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.#ctor(System.ServiceModel.BasicHttpSecurityMode)">
+      <summary>바인딩에서 사용하는 지정된 보안 형식을 사용하여 <see cref="T:System.ServiceModel.BasicHttpBinding" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="securityMode">클라이언트 및 SOAP 메시지에 사용되는 보안 형식을 지정하는 <see cref="T:System.ServiceModel.BasicHttpSecurityMode" /> 값입니다.</param>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.BuildChannelFactory``1(System.ServiceModel.Channels.BindingParameterCollection)">
+      <summary>지정된 형식의 채널을 만들고 바인딩 매개 변수 컬렉션에서 지정된 기능을 충족하는 채널 팩터리 스택을 클라이언트에 생성합니다.</summary>
+      <returns>컬렉션에서 지정된 기능을 충족하는 <paramref name="TChannel" /> 형식의 <see cref="T:System.ServiceModel.Channels.IChannelFactory`1" />입니다.</returns>
+      <param name="parameters">생성되는 채널 팩터리에 대한 요구 사항을 지정합니다.</param>
+      <typeparam name="TChannel">채널 팩터리에서 생성하는 채널 형식입니다.</typeparam>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.CreateBindingElements">
+      <summary>현재 바인딩에 포함되어 있는 순서가 지정된 바인딩 요소 컬렉션을 만들고 반환합니다.</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.BasicHttpBinding" />에서 설명하는 순서가 지정된 바인딩 요소 스택을 포함하는 <see cref="T:System.ServiceModel.Channels.BindingElementCollection" />입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpBinding.Security">
+      <summary>이 바인딩과 함께 사용되는 보안 형식을 가져옵니다.  </summary>
+      <returns>이 바인딩과 함께 사용되는 <see cref="T:System.ServiceModel.BasicHttpSecurity" />입니다.기본값은 <see cref="F:System.ServiceModel.BasicHttpSecurityMode.None" />입니다.</returns>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpMessageCredentialType">
+      <summary>BasicHttpBinding 바인딩에서 보안을 사용하는 경우 클라이언트가 인증하는 데 사용할 수 있는 자격 증명 형식을 열거합니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpMessageCredentialType.Certificate">
+      <summary>인증서를 사용하여 클라이언트를 인증할 것을 나타냅니다. </summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpMessageCredentialType.UserName">
+      <summary>username 자격 증명을 사용하여 클라이언트를 인증할 것을 나타냅니다. </summary>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpSecurity">
+      <summary>basicHttpBinding 바인딩의 보안 설정을 구성합니다.</summary>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpSecurity.Mode">
+      <summary>basicHttpBinding 바인딩의 보안 모드를 가져오거나 설정합니다.</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.BasicHttpSecurityMode" /> 열거형 값입니다.이 속성의 기본값은 <see cref="F:System.ServiceModel.BasicHttpSecurityMode.None" />입니다.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">값이 <see cref="T:System.ServiceModel.BasicHttpSecurityMode" />에 대한 올바른 값이 아닌 경우</exception>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpSecurity.Transport">
+      <summary>basicHttpBinding 바인딩의 전송 수준 보안 설정을 가져옵니다.</summary>
+      <returns>basicHttpBinding 바인딩의 전송 수준 보안 설정입니다.</returns>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpSecurityMode">
+      <summary>시스템에서 제공한 <see cref="T:System.ServiceModel.BasicHttpBinding" />과 함께 사용할 수 있는 보안 형식을 지정합니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.Message">
+      <summary>SOAP 메시지 보안을 사용하여 보안이 제공됩니다.<see cref="T:System.ServiceModel.BasicHttpBinding" />의 경우 서버 인증서가 별도로 클라이언트에 제공되어야 합니다.이 바인딩에 유효한 클라이언트 자격 증명 형식은 UserName과 Certificate입니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.None">
+      <summary>SOAP 메시지는 전송 중에는 보안되지 않습니다.이것은 기본적인 동작입니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.Transport">
+      <summary>HTTPS를 사용하여 보안이 제공됩니다.SSL 인증서를 사용하여 서비스를 구성해야 합니다.SOAP 메시지 전체가 HTTPS를 사용하여 보호됩니다.클라이언트에서 서비스는 서비스의 SSL 인증서를 사용하여 인증됩니다.클라이언트 인증은 <see cref="P:System.ServiceModel.HttpTransportSecurity.ClientCredentialType" />을 통해 제어됩니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.TransportCredentialOnly">
+      <summary>이 모드는 메시지 무결성 및 기밀성을 제공하지 않으나HTTP 기반 클라이언트 인증만 제공합니다.이 모드는 주의하여 사용하십시오.이 모드는 다른 방식(예: IPsec)에 의해 전송 보안이 제공되며 WCF(Windows Communication Foundation) 인프라에서 클라이언트 인증만 제공하는 환경에서 사용해야 합니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.TransportWithMessageCredential">
+      <summary>HTTPS를 사용하여 무결성, 기밀성 및 서버 인증을 제공합니다.인증서를 사용하여 서비스를 구성해야 합니다.클라이언트 인증은 SOAP 메시지 보안에 의해 제공됩니다.이 모드는 사용자가 사용자 이름 또는 인증서 자격 증명을 사용하여 인증하고 메시지 전송 보호를 위한 기존의 HTTPS 배포가 있는 경우에 적용할 수 있습니다.</summary>
+    </member>
+    <member name="T:System.ServiceModel.HttpBindingBase">
+      <summary>기본 HTTP 바인딩을 지정합니다.</summary>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.AllowCookies">
+      <summary>클라이언트가 쿠키를 허용하고 이후 요청에서 이 쿠키를 전파하는지 여부를 나타내는 값을 가져오거나 설정합니다.</summary>
+      <returns>쿠키가 허용되면 true이고, 그렇지 않으면 false입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.EnvelopeVersion">
+      <summary>이 바인딩에서 처리한 메시지에 사용되는 SOAP 버전을 가져옵니다.</summary>
+      <returns>이 바인딩에서 처리한 메시지에 사용되는 SOAP 버전입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxBufferPoolSize">
+      <summary>채널로부터 메시지를 수신하는 메시지 버퍼 관리자가 사용하도록 할당된 최대 메모리(바이트)를 가져오거나 설정합니다.</summary>
+      <returns>채널로부터 메시지를 수신하는 메시지 버퍼 관리자가 사용하도록 할당된 최대 메모리(바이트)입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxBufferSize">
+      <summary>채널로부터 메시지를 수신하는 버퍼의 최대 크기(바이트)를 가져오거나 설정합니다.</summary>
+      <returns>채널로부터 메시지를 수신하는 버퍼의 최대 크기(바이트)입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxReceivedMessageSize">
+      <summary>이 바인딩으로 구성된 채널에서 수신할 수 있는 최대 메시지 크기(바이트)를 가져오거나 설정합니다.</summary>
+      <returns>이 바인딩으로 구성된 채널에서 받을 수 있는 메시지의 최대 크기(바이트)입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.ReaderQuotas">
+      <summary>이 바인딩으로 구성된 끝점에서 처리할 수 있는 SOAP 메시지의 복잡성에 대한 제약 조건을 가져오거나 설정합니다.</summary>
+      <returns>이 바인딩으로 구성된 끝점에서 처리할 수 있는 SOAP 메시지의 복잡성에 대한 제약 조건입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.Scheme">
+      <summary>이 바인딩으로 구성되는 채널과 수신기의 URI 전송 체계를 가져옵니다.</summary>
+      <returns>이 바인딩으로 구성되는 채널과 수신기의 URI 전송 체계입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.TextEncoding">
+      <summary>메시지 텍스트에 사용되는 문자 인코딩을 가져오거나 설정합니다.</summary>
+      <returns>메시지 텍스트에 사용되는 문자 인코딩입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.TransferMode">
+      <summary>메시지를 버퍼링 방식으로 보내는지 아니면 스트리밍 방식으로 보내는지를 나타내는 값을 가져오거나 설정합니다.</summary>
+      <returns>메시지를 버퍼링 방식과 스트리밍 방식 중 어떤 방식으로 보내는지를 나타내는 <see cref="T:System.ServiceModel.TransferMode" /> 열거형 값 중 하나입니다.</returns>
+    </member>
+    <member name="T:System.ServiceModel.HttpClientCredentialType">
+      <summary>HTTP 클라이언트에 대한 유효한 자격 증명 형식을 열거합니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Basic">
+      <summary>기본 인증을 지정합니다.자세한 내용은 RFC 2617 – HTTP Authentication: Basic and Digest Authentication을 참조하십시오.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Certificate">
+      <summary>인증서를 사용하여 클라이언트 인증을 지정합니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Digest">
+      <summary>다이제스트 인증을 지정합니다.자세한 내용은 RFC 2617 – HTTP Authentication: Basic and Digest Authentication을 참조하십시오.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.InheritedFromHost">
+      <summary>인증은 호스트에서 상속됩니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.None">
+      <summary>익명 인증을 지정합니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Ntlm">
+      <summary>NTLM을 사용하여 클라이언트 인증을 지정합니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Windows">
+      <summary>Windows를 사용하여 클라이언트 인증을 지정합니다.</summary>
+    </member>
+    <member name="T:System.ServiceModel.HttpTransportSecurity">
+      <summary>
+        <see cref="T:System.ServiceModel.WSHttpBinding" />의 전송 수준 보안 설정을 나타냅니다.</summary>
+    </member>
+    <member name="M:System.ServiceModel.HttpTransportSecurity.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.HttpTransportSecurity" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+    </member>
+    <member name="P:System.ServiceModel.HttpTransportSecurity.ClientCredentialType">
+      <summary>인증에 사용되는 클라이언트 자격 증명의 형식을 가져오거나 설정합니다.</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.HttpClientCredentialType" />를 반환합니다.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">속성을 정의되지 않은 값으로 설정하는 경우</exception>
+    </member>
+    <member name="T:System.ServiceModel.NetHttpBinding">
+      <summary>
+        <see cref="T:System.ServiceModel.NetHttpBinding" />에 대한 설정을 지정합니다.</summary>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.NetHttpBinding" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor(System.ServiceModel.BasicHttpSecurityMode)">
+      <summary>지정된 보안 모드를 사용하여 <see cref="T:System.ServiceModel.NetHttpBinding" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="securityMode">보안 모드입니다.</param>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor(System.String)">
+      <summary>지정된 구성 이름을 사용하여 <see cref="T:System.ServiceModel.NetHttpBinding" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="configurationName">구성 이름입니다.</param>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.BuildChannelFactory``1(System.ServiceModel.Channels.BindingParameterCollection)">
+      <summary>지정된 형식의 채널을 만들고 바인딩 매개 변수 컬렉션에서 지정된 기능을 충족하는 채널 팩터리 스택을 클라이언트에 생성합니다.</summary>
+      <returns>컬렉션에서 지정한 기능을 충족하는 채널 팩터리입니다.</returns>
+      <param name="parameters">빌드된 채널 팩터리에 대한 요구 사항을 지정하는 매개 변수의 컬렉션입니다.</param>
+      <typeparam name="TChannel">채널 팩터리에서 생성하는 채널 형식입니다.</typeparam>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.CreateBindingElements">
+      <summary>바인딩에 대한 바인딩 요소가 들어 있는 컬렉션을 만듭니다.</summary>
+      <returns>바인딩을 구성하는 바인딩 요소의 컬렉션입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.MessageEncoding">
+      <summary>메시지를 인코딩하는 데 사용하는 메시지 인코딩 형식을 가져오거나 설정합니다.</summary>
+      <returns>메시지를 인코딩하는 데 사용되는 메시지 인코딩 형식입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.Security">
+      <summary>바인딩으로 구성되는 서비스에 사용하는 보안을 가져오거나 설정합니다.</summary>
+      <returns>바인딩으로 구성된 서비스에 사용되는 보안입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.WebSocketSettings">
+      <summary>websocket의 설정을 가져옵니다.</summary>
+      <returns>websocket의 설정입니다.</returns>
+    </member>
+    <member name="T:System.ServiceModel.NetHttpMessageEncoding">
+      <summary>Net Http 메시지 인코딩을 지정합니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Binary">
+      <summary>이진 메시지 인코딩입니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Mtom">
+      <summary>Mtom 메시지 인코딩입니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Text">
+      <summary>텍스트 메시지 인코딩입니다.</summary>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpRequestMessageProperty">
+      <summary>HTTP 프로토콜을 통한 요청이 있을 때 사용할 수 있는 추가 정보에 액세스하고 응답할 수 있도록 HTTP 요청에 대한 액세스를 제공합니다.</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpRequestMessageProperty.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpRequestMessageProperty" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Headers">
+      <summary>HTTP 요청에서 HTTP 헤더를 가져옵니다.</summary>
+      <returns>HTTP 요청에 HTTP 헤더를 포함하는 <see cref="T:System.Net.WebHeaderCollection" />을 반환합니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Method">
+      <summary>HTTP 요청의 HTTP 동사를 가져오거나 설정합니다.</summary>
+      <returns>HTTP 요청의 HTTP 동사입니다.</returns>
+      <exception cref="T:System.ArgumentNullException">값이 null로 설정된 경우</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Name">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpRequestMessageProperty" /> 클래스와 연결된 메시지 속성의 이름을 가져옵니다.</summary>
+      <returns>값 "httpRequest"입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.QueryString">
+      <summary>HTTP 요청의 쿼리 문자열을 가져오거나 설정합니다.</summary>
+      <returns>HTTP 요청의 쿼리 문자열입니다.</returns>
+      <exception cref="T:System.ArgumentNullException">값이 null로 설정된 경우</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.SuppressEntityBody">
+      <summary>메시지 본문을 무시하고 헤더만 보내는지 여부를 나타내는 값을 가져오거나 설정합니다.</summary>
+      <returns>메시지 본문을 무시하면 true이고, 그렇지 않으면 false입니다.기본값은 false입니다.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpRequestMessageProperty.System#ServiceModel#Channels#IMessageProperty#CreateCopy">
+      <summary>현재 개체의 복사본을 만들어 반환합니다.</summary>
+      <returns>현재 개체의 복사본을 나타내는 <see cref="T:System.ServiceModel.Channels.IMessageProperty" /> 개체입니다.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpResponseMessageProperty">
+      <summary>HTTP 프로토콜을 통한 요청에 사용 가능한 추가 정보에 액세스하고 응답할 수 있도록 HTTP 응답에 대한 액세스를 제공합니다. </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpResponseMessageProperty.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpResponseMessageProperty" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.Headers">
+      <summary>HTTP 응답에서 HTTP 헤더를 가져옵니다.</summary>
+      <returns>HTTP 응답에 HTTP 헤더를 포함하는 <see cref="T:System.Net.WebHeaderCollection" />을 반환합니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.Name">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpResponseMessageProperty" /> 클래스와 연결된 메시지 속성의 이름을 가져옵니다.</summary>
+      <returns>"httpResponse"를 반환합니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusCode">
+      <summary>이 속성이 연결된 현재 HTTP 응답의 상태 코드를 가져오거나 설정합니다.</summary>
+      <returns>HTTP 응답에서 보낼 <see cref="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusCode" />를 반환합니다.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">100보다 작거나 599보다 큰 값이 설정된 경우</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusDescription">
+      <summary>이 속성이 연결된 현재 HTTP 응답의 상태 코드에 대한 설명을 가져오거나 설정합니다.</summary>
+      <returns>HTTP 응답에 대해 전송될 <see cref="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusDescription" />을 반환합니다.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpResponseMessageProperty.System#ServiceModel#Channels#IMessageProperty#CreateCopy">
+      <summary>현재 인스턴스의 새 복사본을 만듭니다.</summary>
+      <returns>현재 인스턴스에 대한 <see cref="T:System.ServiceModel.Channels.IMessageProperty" /> 형식의 새로 만든 복사본입니다.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpsTransportBindingElement">
+      <summary>메시지 전송을 위한 HTTPS 전송을 지정하는 데 사용되는 바인딩 요소를 나타냅니다. </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" /> 클래스의 새 인스턴스를 초기화합니다.  </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.#ctor(System.ServiceModel.Channels.HttpsTransportBindingElement)">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" /> 클래스의 새 인스턴스를 초기화합니다. </summary>
+      <param name="elementToBeCloned">
+        <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" /> 클래스의 인스턴스입니다. </param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.BuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>채널을 만드는 데 사용할 수 있는 지정된 형식의 채널 팩터리를 만듭니다.</summary>
+      <returns>전송 바인딩 요소에 설정된 값을 기반으로 구성되는 지정된 형식의 채널 팩터리입니다.</returns>
+      <param name="context">채널 팩터리를 만드는 데 필요한 바인딩, 동작, 계약, 기타 정보를 설명하는 <see cref="T:System.ServiceModel.Channels.BindingContext" /> 멤버입니다.</param>
+      <typeparam name="TChannel">채널 형식입니다.</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="context" />가 null인 경우</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.Clone">
+      <summary>현재 바인딩 요소의 복사본을 만듭니다.</summary>
+      <returns>현재 바인딩 요소의 복사본입니다.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.GetProperty``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.BindingContext" />에서 지정된 개체를 가져옵니다.</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.Channels.BindingContext" />에서 지정된 개체이거나, 개체를 찾을 수 없는 경우에는 null입니다.</returns>
+      <param name="context">
+        <see cref="T:System.ServiceModel.Channels.BindingContext" />
+      </param>
+      <typeparam name="T">가져올 개체입니다.</typeparam>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpsTransportBindingElement.Scheme">
+      <summary>전송을 위한 URI 체계를 반환합니다.</summary>
+      <returns>전송을 위한 URI 체계인 "HTTPS"를 반환합니다.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpTransportBindingElement">
+      <summary>메시지 전송을 위한 HTTP 전송을 지정하는 데 사용되는 바인딩 요소를 나타냅니다. </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" /> 클래스의 새 인스턴스를 초기화합니다. </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.#ctor(System.ServiceModel.Channels.HttpTransportBindingElement)">
+      <summary>다른 바인딩 요소를 사용하여 <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="elementToBeCloned">이 인스턴스를 초기화하는 데 사용되는 <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" /> 개체입니다.</param>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.AllowCookies">
+      <summary>클라이언트가 쿠키를 허용하고 이후 요청에서 이 쿠키를 전파하는지 여부를 나타내는 값을 가져오거나 설정합니다.</summary>
+      <returns>쿠키가 허용되면 true이고, 그렇지 않으면 false입니다.기본값은 false입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.AuthenticationScheme">
+      <summary>HTTP 수신기에서 처리할 클라이언트 요청 인증에 사용되는 인증 체계를 가져오거나 설정합니다.</summary>
+      <returns>클라이언트 인증에 사용되는 프로토콜을 지정하는 <see cref="T:System.Net.AuthenticationSchemes" /> 열거형의 열거형 값 중 하나입니다.기본값은 <see cref="F:System.Net.AuthenticationSchemes.Anonymous" />입니다.</returns>
+      <exception cref="T:System.ArgumentException">
+        <see cref="T:System.Net.AuthenticationSchemes" />의 값이 이미 설정되어 있는 경우</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.BuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>채널을 만드는 데 사용할 수 있는 채널 팩터리를 만듭니다.</summary>
+      <returns>지정된 형식의 채널 팩터리입니다.</returns>
+      <param name="context">채널 팩터리를 만드는 데 필요한 바인딩, 동작, 계약, 기타 정보를 설명하는 <see cref="T:System.ServiceModel.Channels.BindingContext" /> 멤버입니다.</param>
+      <typeparam name="TChannel">채널 팩터리의 형식입니다.</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="context" />가 null인 경우</exception>
+      <exception cref="T:System.ArgumentException">잘못된 인수가 전달된 경우</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.CanBuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>지정된 형식의 채널 팩터리를 생성할 수 있는지 여부를 결정합니다.</summary>
+      <returns>채널 팩터리를 생성할 수 있으면 true이고, 그렇지 않으면 false입니다.</returns>
+      <param name="context">채널의 <see cref="T:System.ServiceModel.Channels.BindingContext" />입니다.</param>
+      <typeparam name="TChannel">확인할 채널의 형식입니다.</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="context" />가 null입니다.</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.Clone">
+      <summary>현재 바인딩 요소의 복사본인 새 인스턴스를 만듭니다.</summary>
+      <returns>현재 바인딩 요소의 복사본인 새 인스턴스입니다.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.GetProperty``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>지정된 <see cref="T:System.ServiceModel.Channels.BindingContext" />에서 속성을 가져옵니다.</summary>
+      <returns>지정된 <see cref="T:System.ServiceModel.Channels.BindingContext" />의 속성입니다.</returns>
+      <param name="context">
+        <see cref="T:System.ServiceModel.Channels.BindingContext" />
+      </param>
+      <typeparam name="T">가져올 속성의 형식입니다.</typeparam>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.MaxBufferSize">
+      <summary>사용할 버퍼의 최대 크기를 가져오거나 설정합니다.버퍼링된 메시지의 경우 이 값은 <see cref="P:System.ServiceModel.Channels.TransportBindingElement.MaxReceivedMessageSize" />와 같습니다.스트리밍된 메시지의 경우 이 값은 버퍼링된 모드에서 읽어오는 SOAP 헤더의 최대 크기입니다.</summary>
+      <returns>버퍼의 최대 크기(바이트)입니다. </returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.Scheme">
+      <summary>전송을 위한 URI 체계를 가져옵니다.</summary>
+      <returns>전송할 URI 체계를 나타내는 <see cref="F:System.Uri.UriSchemeHttp" /> 개체입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.TransferMode">
+      <summary>전송 모드를 가져오거나 설정합니다.</summary>
+      <returns>
+        <see cref="P:System.ServiceModel.Channels.HttpTransportBindingElement.TransferMode" />의 다음 멤버 값 중 하나입니다.BufferedStreamedStreamedRequestStreamedResponse</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.WebSocketSettings">
+      <summary>바인딩 요소의 웹 소켓 구성 요소를 가져오거나 설정합니다.</summary>
+      <returns>웹 소켓 설정입니다.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.IHttpCookieContainerManager">
+      <summary>쿠키 컨테이너 관리자를 나타냅니다.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.IHttpCookieContainerManager.CookieContainer">
+      <summary>쿠키 컨테이너를 가져오거나 설정합니다.</summary>
+      <returns>쿠키 컨테이너입니다.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.WebSocketTransportSettings">
+      <summary>웹 소켓 전송 설정을 나타냅니다.</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.#ctor">
+      <summary>
+        <see cref="T:System.ServiceModel.Channels.WebSocketTransportSettings" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportSettings.BinaryMessageReceivedAction">
+      <summary>웹 소켓 이진 메시지를 받을 때의 작업을 지정합니다.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.DisablePayloadMasking">
+      <summary>웹 소켓 마스크가 사용되지 않는지 여부를 나타내는 값을 가져오거나 설정합니다.</summary>
+      <returns>웹 소켓 마스크가 비활성화 되어 있는 경우 true이고, 그렇지 않으면 false입니다.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.Equals(System.Object)">
+      <summary>지정된 개체가 현재 개체와 같은지 여부를 확인합니다.</summary>
+      <returns>지정한 개체가 현재 개체와 같으면 true이고, 그렇지 않으면 false입니다.</returns>
+      <param name="obj">현재 개체와 비교할 개체입니다.</param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.Equals(System.ServiceModel.Channels.WebSocketTransportSettings)">
+      <summary>지정된 웹 소켓 전송 설정 개체가 현재 개체와 같은지 여부를 확인합니다.</summary>
+      <returns>지정한 개체가 현재 개체와 같으면 true이고, 그렇지 않으면 false입니다.</returns>
+      <param name="other">현재 개체와 비교할 웹 소켓 전송 설정 개체입니다.</param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.GetHashCode">
+      <summary>이 개체의 해시 코드 값을 가져옵니다.</summary>
+      <returns>이 개체의 해시 코드 값입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.KeepAliveInterval">
+      <summary>연결 유지 간격 값을 가져오거나 설정합니다.</summary>
+      <returns>연결 유지 간격 값입니다.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.SubProtocol">
+      <summary>웹 소켓 하위 프로토콜을 가져오거나 설정합니다.</summary>
+      <returns>웹 소켓 하위 프로토콜입니다.</returns>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportSettings.TextMessageReceivedAction">
+      <summary>웹 소켓 텍스트 메시지를 받을 때의 작업을 지정합니다.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.TransportUsage">
+      <summary>웹 소켓 전송 사용량을 가져오거나 설정합니다.</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.Channels.WebSocketTransportUsage" /> 열거형의 값 중 하나입니다.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.WebSocketTransportUsage">
+      <summary>WebSocket 전송 페이지의 열거형을 지정합니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.Always">
+      <summary>WebSocket 전송이 항상 사용됨을 나타냅니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.Never">
+      <summary>WebSocket 전송이 절대 사용되지 않음을 나타냅니다.</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.WhenDuplex">
+      <summary>WebSocket 전송이 이중 서비스 계약에만 사용됨을 나타냅니다.</summary>
+    </member>
+  </members>
+</doc>

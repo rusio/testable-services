@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.ServiceModel.Http</name>
+  </assembly>
+  <members>
+    <member name="T:System.ServiceModel.BasicHttpBinding">
+      <summary>表示一个绑定，Windows Communication Foundation (WCF) 服务可以使用此绑定配置和公开这样的终结点：这些终结点能够与基于 ASMX 的 Web 服务和客户端以及符合 WS-I Basic Profile 1.1 标准的其他服务进行通信。</summary>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.#ctor">
+      <summary>初始化 <see cref="T:System.ServiceModel.BasicHttpBinding" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.#ctor(System.ServiceModel.BasicHttpSecurityMode)">
+      <summary>通过绑定所使用的指定安全类型初始化 <see cref="T:System.ServiceModel.BasicHttpBinding" /> 类的新实例。</summary>
+      <param name="securityMode">
+        <see cref="T:System.ServiceModel.BasicHttpSecurityMode" /> 的值，该值指定 SOAP 消息和客户端使用的安全类型。</param>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.BuildChannelFactory``1(System.ServiceModel.Channels.BindingParameterCollection)">
+      <summary>在客户端上生成通道工厂堆栈，此通道工厂堆栈创建具有指定类型的通道并满足绑定参数集合所指定的功能。</summary>
+      <returns>一个类型为 <paramref name="TChannel" /> 的 <see cref="T:System.ServiceModel.Channels.IChannelFactory`1" />，它满足集合所指定的功能。</returns>
+      <param name="parameters">为生成的通道工厂指定要求。</param>
+      <typeparam name="TChannel">通道工厂生成的通道类型。</typeparam>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.CreateBindingElements">
+      <summary>创建并返回一个包含在当前绑定中的已排序的绑定元素集合。</summary>
+      <returns>包含已排序的绑定元素堆栈的 <see cref="T:System.ServiceModel.Channels.BindingElementCollection" />，这些绑定元素由 <see cref="T:System.ServiceModel.BasicHttpBinding" /> 描述。</returns>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpBinding.Security">
+      <summary>获取与此绑定一起使用的安全类型。</summary>
+      <returns>与此绑定一起使用的 <see cref="T:System.ServiceModel.BasicHttpSecurity" />。默认值为 <see cref="F:System.ServiceModel.BasicHttpSecurityMode.None" />。</returns>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpMessageCredentialType">
+      <summary>枚举在 BasicHttpBinding 绑定中启用安全时客户端可用来进行身份验证的凭据类型。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpMessageCredentialType.Certificate">
+      <summary>指示使用证书对客户端进行身份验证。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpMessageCredentialType.UserName">
+      <summary>指示使用用户名凭据对客户端进行身份验证。</summary>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpSecurity">
+      <summary>配置 basicHttpBinding 绑定的安全设置。</summary>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpSecurity.Mode">
+      <summary>获取或设置 basicHttpBinding 绑定的安全模式。</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.BasicHttpSecurityMode" /> 枚举中的一个值。此属性的默认值为 <see cref="F:System.ServiceModel.BasicHttpSecurityMode.None" />。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">此值不是 <see cref="T:System.ServiceModel.BasicHttpSecurityMode" /> 的合法值。</exception>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpSecurity.Transport">
+      <summary>设置 basicHttpBinding 绑定的传输级安全性设置。</summary>
+      <returns>basicHttpBinding 绑定的传输级安全性设置。</returns>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpSecurityMode">
+      <summary>指定可与系统提供的 <see cref="T:System.ServiceModel.BasicHttpBinding" /> 一起使用的安全类型。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.Message">
+      <summary>使用 SOAP 消息安全提供安全性。对于 <see cref="T:System.ServiceModel.BasicHttpBinding" />，系统要求向客户端单独提供服务器证书。此绑定的有效客户端凭据类型为 UserName 和 Certificate。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.None">
+      <summary>SOAP 消息在传输过程中并不安全。这是默认行为。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.Transport">
+      <summary>使用 HTTPS 提供安全性。此服务必须使用 SSL 证书进行配置。SOAP 消息是用 HTTPS 作为一个整体进行保护的。客户端使用服务的 SSL 证书对服务进行身份验证。通过 <see cref="P:System.ServiceModel.HttpTransportSecurity.ClientCredentialType" /> 可对客户端身份验证进行控制。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.TransportCredentialOnly">
+      <summary>此模式并不提供消息的完整性和保密性，而是仅提供基于 HTTP 的客户端身份验证。使用此模式时一定要小心。在通过其他方式（如 IPSec）提供传输安全并且 Windows Communication Foundation (WCF) 基础结构只提供客户端身份验证的环境中，应该使用此模式。</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.TransportWithMessageCredential">
+      <summary>完整性、保密性和服务器身份验证均由 HTTPS 提供。此服务必须使用证书进行配置。客户端身份验证采用 SOAP 消息安全方式提供。如果要使用用户名或证书凭据对用户进行身份验证，并且存在用于保护消息传输的现有 HTTPS 部署，则适用此模式。</summary>
+    </member>
+    <member name="T:System.ServiceModel.HttpBindingBase">
+      <summary>指定基 HTTP 绑定。</summary>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.AllowCookies">
+      <summary>获取或设置一个值，该值指示客户端是否接受 Cookie 并且对今后的请求传播它们。</summary>
+      <returns>如果接受 Cookie，则为 true；否则为 false。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.EnvelopeVersion">
+      <summary>获取此绑定处理的消息将要使用的 SOAP 版本。</summary>
+      <returns>此绑定处理的消息将要使用的 SOAP 版本。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxBufferPoolSize">
+      <summary>获取或设置为从通道接收消息的消息缓冲区管理器分配并供其使用的最大内存量（以字节为单位）。</summary>
+      <returns>分配供从通道接收消息的消息缓冲区管理器使用的最大内存量（以字节为单位）。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxBufferSize">
+      <summary>获取或设置缓冲区的最大大小（以字节为单位），该缓冲区用于接收来自通道的消息。</summary>
+      <returns>接收来自通道的消息的缓冲区的最大大小（以字节为单位）。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxReceivedMessageSize">
+      <summary>获取或设置配置了此绑定配置的通道上可以接收的消息的最大大小（以字节为单位）。</summary>
+      <returns>此绑定配置的通道上可以接收的消息的最大大小（以字节为单位）。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.ReaderQuotas">
+      <summary>获取或设置可由配置了此绑定的终结点处理的 SOAP 消息的该复杂性约束。</summary>
+      <returns>可由用此绑定配置的终结点处理的 SOAP 消息的复杂性约束。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.Scheme">
+      <summary>获取用此绑定配置的通道和侦听器的 URI 传输方案。</summary>
+      <returns>用此绑定配置的通道和侦听器的 URI 传输方案。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.TextEncoding">
+      <summary>获取或设置用于消息文本的字符编码。</summary>
+      <returns>用于消息文本的字符编码。</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.TransferMode">
+      <summary>获取或设置一个值，该值指示是通过缓冲处理还是流处理来发送消息。</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.TransferMode" /> 的一个枚举值指示信息发送是否中断或以流化。</returns>
+    </member>
+    <member name="T:System.ServiceModel.HttpClientCredentialType">
+      <summary>枚举 HTTP 客户端的有效凭据类型。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Basic">
+      <summary>指定基本身份验证。更多信息，请参见 RFC 2617 – HTTP Authentication: Basic and Digest Authentication（RFC 2617 – HTTP 身份验证：基本和摘要式身份验证）。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Certificate">
+      <summary>指定使用证书进行客户端身份验证。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Digest">
+      <summary>指定摘要式身份验证。更多信息，请参见 RFC 2617 – HTTP Authentication: Basic and Digest Authentication（RFC 2617 – HTTP 身份验证：基本和摘要式身份验证）。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.InheritedFromHost">
+      <summary>身份验证继承自主机。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.None">
+      <summary>指定匿名身份验证。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Ntlm">
+      <summary>指定使用 NTLM 进行客户端身份验证。</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Windows">
+      <summary>指定使用 Windows 进行客户端身份验证。</summary>
+    </member>
+    <member name="T:System.ServiceModel.HttpTransportSecurity">
+      <summary>表示 <see cref="T:System.ServiceModel.WSHttpBinding" /> 的传输级安全性设置。</summary>
+    </member>
+    <member name="M:System.ServiceModel.HttpTransportSecurity.#ctor">
+      <summary>初始化 <see cref="T:System.ServiceModel.HttpTransportSecurity" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.ServiceModel.HttpTransportSecurity.ClientCredentialType">
+      <summary>获取或设置要用于身份验证的客户端凭据的类型。</summary>
+      <returns>返回 <see cref="T:System.ServiceModel.HttpClientCredentialType" />。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">将此属性设置为未定义的值。</exception>
+    </member>
+    <member name="T:System.ServiceModel.NetHttpBinding">
+      <summary>指定 <see cref="T:System.ServiceModel.NetHttpBinding" /> 设置。</summary>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor">
+      <summary>初始化 <see cref="T:System.ServiceModel.NetHttpBinding" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor(System.ServiceModel.BasicHttpSecurityMode)">
+      <summary>使用指定的安全模式初始化 <see cref="T:System.ServiceModel.NetHttpBinding" /> 类的新实例。</summary>
+      <param name="securityMode">安全模式</param>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor(System.String)">
+      <summary>使用指定配置名称初始化 <see cref="T:System.ServiceModel.NetHttpBinding" /> 类的新实例。</summary>
+      <param name="configurationName">配置的名称。</param>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.BuildChannelFactory``1(System.ServiceModel.Channels.BindingParameterCollection)">
+      <summary>在客户端上生成通道工厂堆栈，此通道工厂堆栈创建具有指定类型的通道并满足绑定参数集合所指定的功能。</summary>
+      <returns>通道工厂满足集合所指定的功能。</returns>
+      <param name="parameters">为生成的通道工厂指定要求的参数集合。</param>
+      <typeparam name="TChannel">通道工厂生成的通道类型。</typeparam>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.CreateBindingElements">
+      <summary>为绑定创建一个包含绑定元素的集合。</summary>
+      <returns>构成绑定的绑定元素集合。</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.MessageEncoding">
+      <summary>获取或设置用于编码消息的消息编码类型。</summary>
+      <returns>用于进行编码消息的消息编码类型。</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.Security">
+      <summary>获取或设置用于配置有绑定的服务的安全。</summary>
+      <returns>安全类型与由绑定配置的服务一起使用。</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.WebSocketSettings">
+      <summary>获取 websocket 的设置。</summary>
+      <returns>websocket 的设置。</returns>
+    </member>
+    <member name="T:System.ServiceModel.NetHttpMessageEncoding">
+      <summary>指定网络 Http 消息内码。</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Binary">
+      <summary>二进制消息编码。</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Mtom">
+      <summary>Mtom 消息编码。</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Text">
+      <summary>文本消息编码。</summary>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpRequestMessageProperty">
+      <summary>提供对 HTTP 请求的访问，以访问和响应通过 HTTP 协议提供给请求的附加信息。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpRequestMessageProperty.#ctor">
+      <summary>初始化 <see cref="T:System.ServiceModel.Channels.HttpRequestMessageProperty" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Headers">
+      <summary>从 HTTP 请求获取 HTTP 标头。</summary>
+      <returns>返回一个 <see cref="T:System.Net.WebHeaderCollection" />，其中包含 HTTP 请求中的 HTTP 标头。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Method">
+      <summary>获取或设置 HTTP 请求的 HTTP 谓词。</summary>
+      <returns>HTTP 请求的 HTTP 谓词。</returns>
+      <exception cref="T:System.ArgumentNullException">值设置为 null。</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Name">
+      <summary>获取与 <see cref="T:System.ServiceModel.Channels.HttpRequestMessageProperty" /> 类关联的消息属性的名称。</summary>
+      <returns>值“httpRequest”。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.QueryString">
+      <summary>获取或设置 HTTP 请求的查询字符串。</summary>
+      <returns>HTTP 请求中的查询字符串。</returns>
+      <exception cref="T:System.ArgumentNullException">值设置为 null。</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.SuppressEntityBody">
+      <summary>获取或设置一个值，该值指示是否忽略消息正文并且只发送标头。</summary>
+      <returns>如果禁止发送消息正文，则为 true；否则为 false。默认值为 false。</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpRequestMessageProperty.System#ServiceModel#Channels#IMessageProperty#CreateCopy">
+      <summary>创建并返回当前对象的一个副本。</summary>
+      <returns>一个 <see cref="T:System.ServiceModel.Channels.IMessageProperty" /> 对象，该对象表示当前对象的副本。</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpResponseMessageProperty">
+      <summary>提供对 HTTP 响应的访问，以便访问和响应为 HTTP 协议请求提供的附加信息。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpResponseMessageProperty.#ctor">
+      <summary>初始化 <see cref="T:System.ServiceModel.Channels.HttpResponseMessageProperty" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.Headers">
+      <summary>从 HTTP 响应中获取 HTTP 标头。</summary>
+      <returns>返回一个 <see cref="T:System.Net.WebHeaderCollection" />，它包含 HTTP 响应中的 HTTP 标头。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.Name">
+      <summary>获取与 <see cref="T:System.ServiceModel.Channels.HttpResponseMessageProperty" /> 类关联的消息属性的名称。</summary>
+      <returns>返回“httpResponse”。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusCode">
+      <summary>获取或设置附加此属性的当前 HTTP 响应的状态代码。</summary>
+      <returns>返回要在 HTTP 响应中发送的 <see cref="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusCode" />。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">设置的值小于 100 或大于 599。</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusDescription">
+      <summary>获取或设置附加此属性的当前 HTTP 响应的状态代码说明。</summary>
+      <returns>返回要在 HTTP 响应中发送的 <see cref="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusDescription" />。</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpResponseMessageProperty.System#ServiceModel#Channels#IMessageProperty#CreateCopy">
+      <summary>创建当前实例的新副本。</summary>
+      <returns>新创建的当前实例的 <see cref="T:System.ServiceModel.Channels.IMessageProperty" /> 类型的副本。</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpsTransportBindingElement">
+      <summary>表示用于指定 HTTPS 传输以传输消息的绑定元素。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.#ctor">
+      <summary>初始化 <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.#ctor(System.ServiceModel.Channels.HttpsTransportBindingElement)">
+      <summary>初始化 <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" /> 类的新实例。</summary>
+      <param name="elementToBeCloned">
+        <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" /> 类的实例。</param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.BuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>创建指定类型的可用于创建通道的通道工厂。</summary>
+      <returns>指定类型的通道工厂，基于传输绑定元素中设置的值进行了配置。</returns>
+      <param name="context">
+        <see cref="T:System.ServiceModel.Channels.BindingContext" /> 成员，描述创建通道工厂所需的绑定、行为、协定和其他信息。</param>
+      <typeparam name="TChannel">通道类型。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="context" /> 不能为 null。</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.Clone">
+      <summary>创建当前绑定元素的副本。</summary>
+      <returns>当前绑定元素的副本。</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.GetProperty``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>从 <see cref="T:System.ServiceModel.Channels.BindingContext" /> 中获取指定的对象。</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.Channels.BindingContext" /> 中的指定对象；如果找不到该对象，则为 null。</returns>
+      <param name="context">
+        <see cref="T:System.ServiceModel.Channels.BindingContext" />。</param>
+      <typeparam name="T">要获取的对象。</typeparam>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpsTransportBindingElement.Scheme">
+      <summary>返回传输的 URI 方案。</summary>
+      <returns>返回传输的 URI 方案，即“HTTPS”。</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpTransportBindingElement">
+      <summary>表示用于指定 HTTP 传输以传输消息的绑定元素。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.#ctor">
+      <summary>初始化 <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.#ctor(System.ServiceModel.Channels.HttpTransportBindingElement)">
+      <summary>初始化使用另一个绑定元素的 <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" /> 类的新实例。</summary>
+      <param name="elementToBeCloned">用于初始化此实例的 <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" /> 对象。</param>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.AllowCookies">
+      <summary>获取或设置一个值，该值指示客户端是否接受 Cookie 并且对今后的请求传播它们。</summary>
+      <returns>如果接受 Cookie，则为 true；否则为 false。默认值为 false。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.AuthenticationScheme">
+      <summary>获取或设置身份验证方案，该方案用于验证 HTTP 侦听器所处理的客户端请求。</summary>
+      <returns>
+        <see cref="T:System.Net.AuthenticationSchemes" /> 枚举的枚举值之一，指定用于客户端身份验证的协议。默认值为 <see cref="F:System.Net.AuthenticationSchemes.Anonymous" />。</returns>
+      <exception cref="T:System.ArgumentException">已设置 <see cref="T:System.Net.AuthenticationSchemes" /> 的值。</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.BuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>创建可用于创建通道的通道工厂。</summary>
+      <returns>具有指定类型的通道工厂。</returns>
+      <param name="context">
+        <see cref="T:System.ServiceModel.Channels.BindingContext" /> 成员，描述创建通道工厂所需的绑定、行为、协定和其他信息。</param>
+      <typeparam name="TChannel">通道工厂的类型。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="context" /> 不能为 null。</exception>
+      <exception cref="T:System.ArgumentException">传递的参数无效。</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.CanBuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>确定是否可生成指定类型的通道工厂。</summary>
+      <returns>如果可以生成通道工厂，则为 true；否则为 false。</returns>
+      <param name="context">通道的 <see cref="T:System.ServiceModel.Channels.BindingContext" />。</param>
+      <typeparam name="TChannel">要检查的通道类型。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="context" /> 为 null。</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.Clone">
+      <summary>创建作为当前绑定元素的副本的新实例。</summary>
+      <returns>作为当前绑定元素的副本的新实例。</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.GetProperty``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>从指定的 <see cref="T:System.ServiceModel.Channels.BindingContext" /> 获取属性。</summary>
+      <returns>取自指定 <see cref="T:System.ServiceModel.Channels.BindingContext" /> 的属性。</returns>
+      <param name="context">
+        <see cref="T:System.ServiceModel.Channels.BindingContext" />。</param>
+      <typeparam name="T">要获取的属性的类型。</typeparam>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.MaxBufferSize">
+      <summary>获取或设置要使用的缓冲区的最大大小。对于缓冲的消息，此值与 <see cref="P:System.ServiceModel.Channels.TransportBindingElement.MaxReceivedMessageSize" /> 相同。对于经过流处理的消息，此值为必须以缓冲模式读取的 SOAP 标头的最大大小。</summary>
+      <returns>缓冲区的最大大小（以字节为单位）。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.Scheme">
+      <summary>获取传输的 URI 方案。</summary>
+      <returns>一个 <see cref="F:System.Uri.UriSchemeHttp" /> 对象，它表示传输的 URI 方案。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.TransferMode">
+      <summary>获取或设置传输模式。</summary>
+      <returns>
+        <see cref="P:System.ServiceModel.Channels.HttpTransportBindingElement.TransferMode" /> 的下列成员值之一：BufferedStreamedStreamedRequestStreamedResponse</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.WebSocketSettings">
+      <summary>获取或设置绑定元素的 Web 套接配置。</summary>
+      <returns>网络套接字设置。</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.IHttpCookieContainerManager">
+      <summary>表示 Cookie 容器管理器。</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.IHttpCookieContainerManager.CookieContainer">
+      <summary>获取或设置 Cookie 容器。</summary>
+      <returns>Cookie 容器。</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.WebSocketTransportSettings">
+      <summary>表示 Web 套接字传输设置。</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.#ctor">
+      <summary>初始化 <see cref="T:System.ServiceModel.Channels.WebSocketTransportSettings" /> 类的新实例。</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportSettings.BinaryMessageReceivedAction">
+      <summary>收到的网络套接字二进制消息时，指定操作。</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.DisablePayloadMasking">
+      <summary>获取或设置一个值，该值指示是否禁用网络套接屏蔽。</summary>
+      <returns>如果网络套接字掩没禁用，则为 true；否则为 false。</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.Equals(System.Object)">
+      <summary>确定指定的对象是否等同于当前的对象。</summary>
+      <returns>如果指定的对象等于当前的对象，则为 true；否则为 false。</returns>
+      <param name="obj">要与当前对象进行比较的对象。</param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.Equals(System.ServiceModel.Channels.WebSocketTransportSettings)">
+      <summary>确定指定的套接传输器对象与当前对象是否相等。</summary>
+      <returns>如果指定的对象等于当前的对象，则为 true；否则为 false。</returns>
+      <param name="other">用于和当前对象进行比较的网络套接字传输设置对象。</param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.GetHashCode">
+      <summary>获取此对象的哈希代码值。</summary>
+      <returns>此对象的哈希代码值。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.KeepAliveInterval">
+      <summary>获取或设置保持活动间隔的连接值。</summary>
+      <returns>保持活动间隔的连接值。</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.SubProtocol">
+      <summary>获取或设置 Web 套接子协议。</summary>
+      <returns>网络套接字 sub 协议。</returns>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportSettings.TextMessageReceivedAction">
+      <summary>收到的网络套接字文本消息时，指定操作。</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.TransportUsage">
+      <summary>获取或设置 Web 套接传输使用情况。</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.Channels.WebSocketTransportUsage" /> 枚举的值之一。</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.WebSocketTransportUsage">
+      <summary>指定 WebSocket 传输用法的枚举。</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.Always">
+      <summary>指示始终使用 WebSocket 传输。</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.Never">
+      <summary>指示从不使用 WebSocket 传输。</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.WhenDuplex">
+      <summary>指示仅对双工服务协定使用 WebSocket 传输。</summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.ServiceModel.Http</name>
+  </assembly>
+  <members>
+    <member name="T:System.ServiceModel.BasicHttpBinding">
+      <summary>Stellt eine Bindung dar, die ein Windows Communication Foundation (WCF)-Dienst zum Konfigurieren und Verfügbarmachen von Endpunkten verwenden kann, die mit ASMX-basierten Webdiensten und -Clients und anderen mit WS-I Basic Profile 1.1 konformen Diensten kommunizieren können.</summary>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.#ctor">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.ServiceModel.BasicHttpBinding" />-Klasse.</summary>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.#ctor(System.ServiceModel.BasicHttpSecurityMode)">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.ServiceModel.BasicHttpBinding" />-Klasse mit einem von der Bindung verwendeten Sicherheitstyp.</summary>
+      <param name="securityMode">Der Wert von <see cref="T:System.ServiceModel.BasicHttpSecurityMode" />, der den Sicherheitstyp angibt, der für die SOAP-Meldung und den Client verwendet wird.</param>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.BuildChannelFactory``1(System.ServiceModel.Channels.BindingParameterCollection)">
+      <summary>Erstellt den Kanalfactorystapel auf dem Client, der einen festgelegten Kanaltyp erstellt und der die Funktionen erfüllt, die von einer Auflistung von Bindungsparametern festgelegt werden.</summary>
+      <returns>
+        <see cref="T:System.ServiceModel.Channels.IChannelFactory`1" /> vom Typ <paramref name="TChannel" />, der die von der Auflistung festgelegten Funktionen erfüllt.</returns>
+      <param name="parameters">Gibt die Anforderungen für die erstellte Channelfactory an.</param>
+      <typeparam name="TChannel">Der Kanaltyp, der von der Kanalfactory erzeugt wird.</typeparam>
+    </member>
+    <member name="M:System.ServiceModel.BasicHttpBinding.CreateBindingElements">
+      <summary>Erstellt eine geordnete Sammlung von Bindungselementen, die in der aktuellen Bindung enthalten sind, und gibt sie zurück.</summary>
+      <returns>Die <see cref="T:System.ServiceModel.Channels.BindingElementCollection" /> mit dem geordneten Stapel von Bindungselementen, wie von <see cref="T:System.ServiceModel.BasicHttpBinding" /> beschrieben.</returns>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpBinding.Security">
+      <summary>Ruft den Sicherheitstyp ab, der mit dieser Bindung verwendet wird.  </summary>
+      <returns>Die mit dieser Bindung verwendete <see cref="T:System.ServiceModel.BasicHttpSecurity" />.Der Standardwert ist <see cref="F:System.ServiceModel.BasicHttpSecurityMode.None" />.</returns>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpMessageCredentialType">
+      <summary>Listet Anmeldeinformationstypen auf, mit denen der Client authentifiziert werden kann, wenn Sicherheit in der BasicHttpBinding-Bindung aktiviert ist.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpMessageCredentialType.Certificate">
+      <summary>Gibt an, dass ein Client mit einem Zertifikat authentifiziert werden muss. </summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpMessageCredentialType.UserName">
+      <summary>Gibt an, dass der Client mit Benutzernamenanmeldeinformationen authentifiziert werden muss. </summary>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpSecurity">
+      <summary>Konfiguriert die Sicherheitseinstellungen einer basicHttpBinding-Bindung.</summary>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpSecurity.Mode">
+      <summary>Ruft den Sicherheitsmodus für eine basicHttpBinding-Bindung ab oder legt ihn fest.</summary>
+      <returns>Ein Wert in der <see cref="T:System.ServiceModel.BasicHttpSecurityMode" />-Enumeration.Der Standardwert für diese Eigenschaft ist <see cref="F:System.ServiceModel.BasicHttpSecurityMode.None" />.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">Der Wert ist kein gültiger Wert für <see cref="T:System.ServiceModel.BasicHttpSecurityMode" />.</exception>
+    </member>
+    <member name="P:System.ServiceModel.BasicHttpSecurity.Transport">
+      <summary>Ruft die Sicherheitseinstellungen auf Transportebene für eine basicHttpBinding-Bindung ab.</summary>
+      <returns>Die Sicherheitseinstellungen auf Transportebene für eine basicHttpBinding-Bindung.</returns>
+    </member>
+    <member name="T:System.ServiceModel.BasicHttpSecurityMode">
+      <summary>Gibt die Sicherheitstypen an, die mit der vom System bereitgestellten <see cref="T:System.ServiceModel.BasicHttpBinding" /> verwendet werden können.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.Message">
+      <summary>Sicherheit wird über die SOAP-Nachrichtensicherheit bereitgestellt.Für die <see cref="T:System.ServiceModel.BasicHttpBinding" /> erfordert das System, dass das Serverzertifikat dem Client separat zur Verfügung gestellt wird.Die gültigen Typen von Clientanmeldeinformationen für diese Bindung sind UserName und Certificate.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.None">
+      <summary>Die SOAP-Nachricht ist während der Übertragung gesichert.Dies ist das Standardverhalten.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.Transport">
+      <summary>Die Sicherheit wird über HTTPS bereitgestellt.Der Dienst muss mit SSL-Zertifikaten konfiguriert werden.Die SOAP-Nachricht wird als Ganzes mit HTTPS geschützt.Der Dienst wird vom Client anhand des SSL-Zertifikats des Diensts authentifiziert.Die Clientauthentifizierung wird vom <see cref="P:System.ServiceModel.HttpTransportSecurity.ClientCredentialType" /> gesteuert.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.TransportCredentialOnly">
+      <summary>Dieser Modus stellt keine Nachrichtenintegrität und Vertraulichkeit bereit.Er bietet nur auf HTTP basierte Clientauthentifizierung.Verwenden Sie daher diesen Modus mit Vorsicht.Er ist nur für Umgebungen geeignet, in denen die Übertragungssicherheit mit anderen Mitteln sichergestellt wird (z.&amp;nbsp;B. durch IPSec) und nur die Clientauthentifizierung über die Windows Communication Foundation (WCF)-Infrastruktur bereitgestellt wird.</summary>
+    </member>
+    <member name="F:System.ServiceModel.BasicHttpSecurityMode.TransportWithMessageCredential">
+      <summary>Integrität, Vertraulichkeit und Serverauthentifizierung werden über HTTPS bereitgestellt.Der Dienst muss mit einem Zertifikat konfiguriert werden.Die Clientauthentifizierung wird über die SOAP-Nachrichtensicherheit bereitgestellt.Dieser Modus findet Anwendung, wenn sich der Benutzer mit UserName oder Certificat-Anmeldeinformationen authentifiziert und eine HTTPS-Bereitstellung zum Sichern der Nachrichtenübertragung vorhanden ist.</summary>
+    </member>
+    <member name="T:System.ServiceModel.HttpBindingBase">
+      <summary>Gibt die Basis-HTTP-Bindung an.</summary>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.AllowCookies">
+      <summary>Ruft einen Wert ab oder legt einen Wert fest, der angibt, ob der Client Cookies akzeptiert und bei zukünftigen Anfragen weiterleitet.</summary>
+      <returns>true, wenn Cookies zulässig sind, andernfalls false.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.EnvelopeVersion">
+      <summary>Ruft die SOAP-Version ab, die für Nachrichten verwendet wird, die von dieser Bindung verarbeitet werden.</summary>
+      <returns>Die SOAP-Version, die für Nachrichten verwendet wird, die von dieser Bindung verarbeitet werden.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxBufferPoolSize">
+      <summary>Ruft die maximale Speicherkapazität in Byte ab, die vom Manager der Nachrichtenpuffer verwendet werden kann, die Nachrichten aus dem Kanal empfangen, oder legt diese fest.</summary>
+      <returns>Die maximale Speicherkapazität in Bytes, die vom Manager der Nachrichtenpuffer verwendet werden kann, die Nachrichten aus dem Channel empfangen.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxBufferSize">
+      <summary>Ruft die maximale Größe in Byte für einen Puffer ab, der Nachrichten von einem Kanal empfängt.</summary>
+      <returns>Die maximale Größe (in Bytes) für einen Puffer, der Nachrichten von einem Channel empfängt.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.MaxReceivedMessageSize">
+      <summary>Ruft die maximale Nachrichtengröße in Byte ab, die in einem Kanal empfangen werden kann, der mit dieser Bindung konfiguriert wurde, oder legt diese fest.</summary>
+      <returns>Die maximale Nachrichtengröße in Byte, die in einem für diese Bindung konfigurierten Channel beim Nachrichtenempfang zulässig ist.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.ReaderQuotas">
+      <summary>Ruft die Beschränkungen der Komplexität von SOAP-Nachrichten ab oder legt Beschränkungen fest, die von Endpunkten verarbeitet werden können, die mit dieser Bindung konfiguriert werden.</summary>
+      <returns>Die Beschränkungen der Komplexität von SOAP-Nachrichten, die von Endpunkten verarbeitet werden können, die mit dieser Bindung konfiguriert werden.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.Scheme">
+      <summary>Ruft das URI-Transportschema für die Kanäle und die Listener ab, die mit dieser Bindung konfiguriert werden.</summary>
+      <returns>Das URI-Transportschema für die Kanäle und die Listener, die mit dieser Bindung konfiguriert werden.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.TextEncoding">
+      <summary>Ruft die Zeichencodierung ab oder legt die Zeichencodierung fest, die für den Nachrichtentext verwendet wird.</summary>
+      <returns>Die Zeichenkodierung, die für den Nachrichtentext verwendet wird.</returns>
+    </member>
+    <member name="P:System.ServiceModel.HttpBindingBase.TransferMode">
+      <summary>Ruft einen Wert ab, der angibt, ob Nachrichten gepuffert oder gestreamt gesendet werden, oder legt diesen Wert fest.</summary>
+      <returns>Einer der Enumerationswerte von <see cref="T:System.ServiceModel.TransferMode" />, der angibt, ob Meldungen gepuffert oder gestreamt gesendet werden.</returns>
+    </member>
+    <member name="T:System.ServiceModel.HttpClientCredentialType">
+      <summary>Listet die gültigen Anmeldeinformationstypen für HTTP-Clients auf.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Basic">
+      <summary>Gibt Basisauthentifizierung an.Weitere Informationen finden Sie unter RFC 2617, HTTP-Authentifizierung: Standard- und Digestauthentifizierung (möglicherweise in englischer Sprache).</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Certificate">
+      <summary>Gibt die Clientauthentifizierung mit einem Zertifikat an.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Digest">
+      <summary>Gibt Digestauthentifizierung an.Weitere Informationen finden Sie unter RFC 2617, HTTP-Authentifizierung: Standard- und Digestauthentifizierung (möglicherweise in englischer Sprache).</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.InheritedFromHost">
+      <summary>Die Authentifizierung wird vom Host geerbt.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.None">
+      <summary>Gibt anonyme Authentifizierung an.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Ntlm">
+      <summary>Gibt die Clientauthentifizierung mit NTLM an.</summary>
+    </member>
+    <member name="F:System.ServiceModel.HttpClientCredentialType.Windows">
+      <summary>Gibt die Clientauthentifizierung mit Windows an.</summary>
+    </member>
+    <member name="T:System.ServiceModel.HttpTransportSecurity">
+      <summary>Stellt die Transportsicherheitseinstellungen für die <see cref="T:System.ServiceModel.WSHttpBinding" /> dar.</summary>
+    </member>
+    <member name="M:System.ServiceModel.HttpTransportSecurity.#ctor">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.ServiceModel.HttpTransportSecurity" />-Klasse.</summary>
+    </member>
+    <member name="P:System.ServiceModel.HttpTransportSecurity.ClientCredentialType">
+      <summary>Ruft den Typ der Clientanmeldeinformationen ab, der zur Authentifizierung verwendet werden soll, oder legt diesen fest.</summary>
+      <returns>Gibt <see cref="T:System.ServiceModel.HttpClientCredentialType" /> zurück.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">Legt die Eigenschaft auf einen nicht definierten Wert fest.</exception>
+    </member>
+    <member name="T:System.ServiceModel.NetHttpBinding">
+      <summary>Gibt Einstellungen für <see cref="T:System.ServiceModel.NetHttpBinding" /> an.</summary>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.ServiceModel.NetHttpBinding" />-Klasse.</summary>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor(System.ServiceModel.BasicHttpSecurityMode)">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.ServiceModel.NetHttpBinding" />-Klasse mit einem angegebenen Sicherheitsmodus.</summary>
+      <param name="securityMode">Der Sicherheitsmodus</param>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.#ctor(System.String)">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.ServiceModel.NetHttpBinding" />-Klasse mit dem angegebenen Konfigurationsnamen.</summary>
+      <param name="configurationName">Der Name der Konfiguration.</param>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.BuildChannelFactory``1(System.ServiceModel.Channels.BindingParameterCollection)">
+      <summary>Erstellt den Kanalfactorystapel auf dem Client, der einen festgelegten Kanaltyp erstellt und der die Funktionen erfüllt, die von einer Auflistung von Bindungsparametern festgelegt werden.</summary>
+      <returns>Die Channelfactory, die die von der Sammlung festgelegten Funktionen erfüllt.</returns>
+      <param name="parameters">Das Auflistung von Parametern, die Anforderungen für die zu erstellende Channelfactory angibt.</param>
+      <typeparam name="TChannel">Der Kanaltyp, der von der Kanalfactory erzeugt wird.</typeparam>
+    </member>
+    <member name="M:System.ServiceModel.NetHttpBinding.CreateBindingElements">
+      <summary>Erstellt eine Sammlung, die die Bindungselemente für die Bindung enthält.</summary>
+      <returns>Eine Sammlung der Bindungselemente, aus denen die Bindung besteht.</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.MessageEncoding">
+      <summary>Übernimmt oder bestimmt den Typ der Nachrichtencodierung, die verwendet wird, um die Meldung zu codieren.</summary>
+      <returns>Der Typ der Nachrichtencodierung, die verwendet wird, um die Meldung zu codieren.</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.Security">
+      <summary>Ruft die Sicherheitsebene ab, die mit Diensten verwendet wird, die mit der Bindung konfiguriert wurden, oder legt diese fest.</summary>
+      <returns>Die Sicherheit, die mit Diensten verwendet wird, die mit der Bindung konfiguriert wurden.</returns>
+    </member>
+    <member name="P:System.ServiceModel.NetHttpBinding.WebSocketSettings">
+      <summary>Ruft die Einstellungen des Websocket ab.</summary>
+      <returns>Die Einstellungen des Websocket.</returns>
+    </member>
+    <member name="T:System.ServiceModel.NetHttpMessageEncoding">
+      <summary>Gibt die Net-HTTP-Meldungscodierung an.</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Binary">
+      <summary>Die binäre Nachrichtencodierung.</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Mtom">
+      <summary>Die MTOM-Nachrichtencodierung.</summary>
+    </member>
+    <member name="F:System.ServiceModel.NetHttpMessageEncoding.Text">
+      <summary>Text-Nachrichtencodierung.</summary>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpRequestMessageProperty">
+      <summary>Ermöglicht den Zugriff auf die HTTP-Anforderung, um auf zusätzliche Informationen für Anforderungen zugreifen und reagieren zu können, die über das HTTP-Protokoll verfügbar gemacht werden.</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpRequestMessageProperty.#ctor">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.ServiceModel.Channels.HttpRequestMessageProperty" />-Klasse.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Headers">
+      <summary>Ruft die HTTP-Header aus der HTTP-Anforderung ab.</summary>
+      <returns>Gibt einen <see cref="T:System.Net.WebHeaderCollection" /> zurück, der die HTTP-Header in der HTTP-Anforderung enthält.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Method">
+      <summary>Ruft das HTTP-Verb für die HTTP-Anforderung ab oder legt dieses fest.</summary>
+      <returns>Das HTTP-Verb für die HTTP-Anforderung.</returns>
+      <exception cref="T:System.ArgumentNullException">Der Wert wird auf null festgelegt.</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.Name">
+      <summary>Ruft den Namen der Nachrichteneigenschaft ab, die mit der <see cref="T:System.ServiceModel.Channels.HttpRequestMessageProperty" />-Klasse verknüpft ist.</summary>
+      <returns>Der Wert 'httpRequest'.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.QueryString">
+      <summary>Ruft die Abfragezeichenfolge für die HTTP-Anforderung ab oder legt diese fest.</summary>
+      <returns>Die Abfragezeichenfolge der HTTP-Anforderung.</returns>
+      <exception cref="T:System.ArgumentNullException">Der Wert wird auf null festgelegt.</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpRequestMessageProperty.SuppressEntityBody">
+      <summary>Ruft einen Wert ab, der angibt, ob der Nachrichtentext ignoriert wird und nur die Header gesendet werden, oder legt diesen fest.</summary>
+      <returns>true, wenn der Nachrichtentext ignoriert wird, andernfalls false.Die Standardeinstellung ist false.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpRequestMessageProperty.System#ServiceModel#Channels#IMessageProperty#CreateCopy">
+      <summary>Erstellt eine Kopie des aktuellen Objekts und gibt sie zurück.</summary>
+      <returns>Ein <see cref="T:System.ServiceModel.Channels.IMessageProperty" />-Objekt, das eine Kopie des aktuellen benutzerdefinierten Objekts darstellt.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpResponseMessageProperty">
+      <summary>Ermöglicht den Zugriff auf die HTTP-Antwort, um auf zusätzliche Informationen für Anforderungen zugreifen und reagieren zu können, die über das HTTP-Protokoll verfügbar gemacht werden. </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpResponseMessageProperty.#ctor">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.ServiceModel.Channels.HttpResponseMessageProperty" />-Klasse.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.Headers">
+      <summary>Ruft die HTTP-Header aus der HTTP-Antwort ab.</summary>
+      <returns>Gibt eine <see cref="T:System.Net.WebHeaderCollection" /> zurück, die die HTTP-Header in der HTTP-Antwort enthält.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.Name">
+      <summary>Ruft den Namen der Nachrichteneigenschaft ab, die mit der <see cref="T:System.ServiceModel.Channels.HttpResponseMessageProperty" />-Klasse verknüpft ist.</summary>
+      <returns>Gibt "httpResponse" zurück.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusCode">
+      <summary>Ruft den Statuscode der aktuellen HTTP-Antwort ab, an den die Eigenschaft angefügt ist, oder legt diesen fest.</summary>
+      <returns>Gibt den <see cref="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusCode" /> für die HTTP-Antwort zurück.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">Der Wert wird auf eine Zahl kleiner als 100 oder größer als 599 festgelegt.</exception>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusDescription">
+      <summary>Ruft die Beschreibung des Statuscodes für die aktuelle HTTP-Antwort ab, an den die Eigenschaft angefügt ist, oder legt diese fest.</summary>
+      <returns>Gibt die <see cref="P:System.ServiceModel.Channels.HttpResponseMessageProperty.StatusDescription" /> für die HTTP-Antwort zurück.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpResponseMessageProperty.System#ServiceModel#Channels#IMessageProperty#CreateCopy">
+      <summary>Erstellt eine neue Kopie der aktuellen Instanz.</summary>
+      <returns>Eine neu erstellte Kopie des Typs <see cref="T:System.ServiceModel.Channels.IMessageProperty" /> der aktuellen Instanz.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpsTransportBindingElement">
+      <summary>Stellt das Bindungselement dar, mit dem eine HTTPS-Übertragung zum Senden von Nachrichten angegeben wird. </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.#ctor">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" />-Klasse.  </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.#ctor(System.ServiceModel.Channels.HttpsTransportBindingElement)">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" />-Klasse. </summary>
+      <param name="elementToBeCloned">Eine Instanz der <see cref="T:System.ServiceModel.Channels.HttpsTransportBindingElement" />-Klasse. </param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.BuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>Erstellt eine Kanalfactory des angegebenen Typs zum Erstellen eines Kanals.</summary>
+      <returns>Eine Kanalfactory des angegebenen Typs, die auf der Basis der Werte konfiguriert wurde, die im Transportbindungselement festgelegt sind.</returns>
+      <param name="context">
+        <see cref="T:System.ServiceModel.Channels.BindingContext" />-Member, mit denen Bindungen, Verhaltensweisen, Verträge und andere Informationen beschrieben werden, die zum Erstellen der Kanalfactory erforderlich sind.</param>
+      <typeparam name="TChannel">Der Typ des Kanals.</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="context" /> darf nicht null sein.</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.Clone">
+      <summary>Erstellt eine Kopie des aktuellen Bindungselements.</summary>
+      <returns>Eine Kopie des aktuellen Bindungselements.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpsTransportBindingElement.GetProperty``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>Ruft ein angegebenes Objekt aus dem <see cref="T:System.ServiceModel.Channels.BindingContext" /> ab.</summary>
+      <returns>Das angegebene Objekt aus dem <see cref="T:System.ServiceModel.Channels.BindingContext" /> oder null, wenn das Objekt nicht gefunden wurde.</returns>
+      <param name="context">Ein <see cref="T:System.ServiceModel.Channels.BindingContext" /></param>
+      <typeparam name="T">Das Objekt, das abgerufen werden soll.</typeparam>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpsTransportBindingElement.Scheme">
+      <summary>Gibt das URI-Schema für die Übertragung zurück.</summary>
+      <returns>Gibt das URI-Schema für die Übertragung ("HTTPS") zurück.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.HttpTransportBindingElement">
+      <summary>Stellt das Bindungselement dar, mit dem eine HTTP-Übertragung zum Senden von Nachrichten angegeben wird. </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.#ctor">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" />-Klasse. </summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.#ctor(System.ServiceModel.Channels.HttpTransportBindingElement)">
+      <summary>Initialisiert unter Verwendung eines anderen Bindungselements eine neue Instanz der <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" />-Klasse.</summary>
+      <param name="elementToBeCloned">Ein <see cref="T:System.ServiceModel.Channels.HttpTransportBindingElement" />-Objekt, mit dem diese Instanz initialisiert werden soll.</param>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.AllowCookies">
+      <summary>Ruft einen Wert ab oder legt einen Wert fest, der angibt, ob der Client Cookies akzeptiert und bei zukünftigen Anfragen weiterleitet.</summary>
+      <returns>true, wenn Cookies zulässig sind, andernfalls false.Die Standardeinstellung ist false.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.AuthenticationScheme">
+      <summary>Ruft das Authentifizierungsschema ab oder legt es fest, das verwendet wird, um Clientanforderungen zu authentifizieren, die von einem HTTP-Listener verarbeitet werden.</summary>
+      <returns>Eines der enumerierten Werte der <see cref="T:System.Net.AuthenticationSchemes" />-Enumeration, die die Protokolle angibt, zur Client-Authentifizierung verwendet werden.Die Standardeinstellung ist <see cref="F:System.Net.AuthenticationSchemes.Anonymous" />.</returns>
+      <exception cref="T:System.ArgumentException">Der Wert für <see cref="T:System.Net.AuthenticationSchemes" /> war bereits festgelegt.</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.BuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>Erstellt eine Kanalfactory, mit der ein Kanal erstellt werden kann.</summary>
+      <returns>Eine Kanalfactory des angegebenen Typs.</returns>
+      <param name="context">
+        <see cref="T:System.ServiceModel.Channels.BindingContext" />-Member, mit denen Bindungen, Verhaltensweisen, Verträge und andere Informationen beschrieben werden, die zum Erstellen der Kanalfactory erforderlich sind.</param>
+      <typeparam name="TChannel">Der Typ der Channelfactory.</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="context" /> darf nicht null sein.</exception>
+      <exception cref="T:System.ArgumentException">Ein ungültiges Argument wurde übergeben.</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.CanBuildChannelFactory``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>Bestimmt, ob eine Kanalfactory des angegebenen Typs erstellt werden kann.</summary>
+      <returns>true, wenn eine Kanalfactory erstellt werden kann, andernfalls false.</returns>
+      <param name="context">Das <see cref="T:System.ServiceModel.Channels.BindingContext" />-Element für den Kanal.</param>
+      <typeparam name="TChannel">Der Kanaltyp, der überprüft werden soll.</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="context" /> ist null.</exception>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.Clone">
+      <summary>Erstellt eine neue Instanz, bei der es sich um eine Kopie des aktuellen Bindungselements handelt.</summary>
+      <returns>Eine neue Instanz, bei der es sich um eine Kopie des aktuellen Bindungselements handelt.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.HttpTransportBindingElement.GetProperty``1(System.ServiceModel.Channels.BindingContext)">
+      <summary>Ruft eine Eigenschaft aus dem angegebenen <see cref="T:System.ServiceModel.Channels.BindingContext" /> ab.</summary>
+      <returns>Die Eigenschaft für den angegebenen <see cref="T:System.ServiceModel.Channels.BindingContext" />.</returns>
+      <param name="context">Ein <see cref="T:System.ServiceModel.Channels.BindingContext" /></param>
+      <typeparam name="T">Der Typ der abzurufenden Eigenschaft.</typeparam>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.MaxBufferSize">
+      <summary>Ruft die maximale Größe des zu verwendenden Puffers ab oder legt diese fest.Für gepufferte Nachrichten ist dieser Wert der Gleiche wie <see cref="P:System.ServiceModel.Channels.TransportBindingElement.MaxReceivedMessageSize" />.Für per Streaming übertragene Nachrichten sollte dieser Wert mindestens die maximale Größe der SOAP-Header aufweisen, die im gepufferten Modus gelesen werden müssen.</summary>
+      <returns>Die maximale Größe des Puffers in Byte. </returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.Scheme">
+      <summary>Ruft das URI-Schema für den Transport ab.</summary>
+      <returns>Ein <see cref="F:System.Uri.UriSchemeHttp" />-Objekt, dass das URI-Schema für den Transport darstellt.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.TransferMode">
+      <summary>Ruft den Übertragungsmodus ab oder legt ihn fest.</summary>
+      <returns>Einer der folgenden Memberwerte von <see cref="P:System.ServiceModel.Channels.HttpTransportBindingElement.TransferMode" />:BufferedStreamedStreamedRequestStreamedResponse</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.HttpTransportBindingElement.WebSocketSettings">
+      <summary>Ruft die Web-Socket-Konfiguration des Bindungselements ab oder legt diese fest.</summary>
+      <returns>Die Websocket-Einstellungen.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.IHttpCookieContainerManager">
+      <summary>Stellt den Cookie-Container-Manager dar.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.IHttpCookieContainerManager.CookieContainer">
+      <summary>Ruft den Cookiecontainer ab oder legt diesen fest.</summary>
+      <returns>Der Cookie-Container.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.WebSocketTransportSettings">
+      <summary>Stellt Einstellungen für Web-Socket-Transport dar.</summary>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.#ctor">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.ServiceModel.Channels.WebSocketTransportSettings" />-Klasse.</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportSettings.BinaryMessageReceivedAction">
+      <summary>Gibt die Aktion beim Empfang einer Web-Socket-Binärnachricht an.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.DisablePayloadMasking">
+      <summary>Ruft einen Wert ab, der angibt, ob die WebSocket-Maske deaktiviert ist, oder legt diesen fest.</summary>
+      <returns>true, wenn die WebSocket-Maske deaktiviert ist; andernfalls false.</returns>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.Equals(System.Object)">
+      <summary>Bestimmt, ob das angegebene Objekt mit dem aktuellen Objekt identisch ist.</summary>
+      <returns>true, wenn das angegebene Objekt gleich dem aktuellen Objekt ist, andernfalls false.</returns>
+      <param name="obj">Das Objekt, das mit dem aktuellen Objekt verglichen werden soll.</param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.Equals(System.ServiceModel.Channels.WebSocketTransportSettings)">
+      <summary>Bestimmt, ob das angegebene Internet-Socket-Transporteinstellungsobjekt mit dem aktuellen Objekt identisch ist.</summary>
+      <returns>true, wenn das angegebene Objekt gleich dem aktuellen Objekt ist, andernfalls false.</returns>
+      <param name="other">Das mit dem aktuellen Objekt zu vergleichende Objekt der Internet-Sockettransporteinstellungen.</param>
+    </member>
+    <member name="M:System.ServiceModel.Channels.WebSocketTransportSettings.GetHashCode">
+      <summary>Ruft den Hashcodewert für dieses Objekt ab.</summary>
+      <returns>Der Hashcode-Wert für dieses Objekt.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.KeepAliveInterval">
+      <summary>Ruft den Wert des Keep Alive-Intervalls der Verbindung ab oder legt diesen fest.</summary>
+      <returns>Der Wert des Keep-Alive-Intervalls der Verbindung.</returns>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.SubProtocol">
+      <summary>Ruft das Internet-Socket-Unterprotokoll ab oder legt dieses fest.</summary>
+      <returns>Das Internet-Socketunterprotokoll.</returns>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportSettings.TextMessageReceivedAction">
+      <summary>Gibt die Aktion beim Empfang einer Web-Socket-Textnachricht an.</summary>
+    </member>
+    <member name="P:System.ServiceModel.Channels.WebSocketTransportSettings.TransportUsage">
+      <summary>Ruft die Internet-Socket-Transportverwendung ab oder legt diese fest.</summary>
+      <returns>Einer der Werte der <see cref="T:System.ServiceModel.Channels.WebSocketTransportUsage" />-Enumeration.</returns>
+    </member>
+    <member name="T:System.ServiceModel.Channels.WebSocketTransportUsage">
+      <summary>Gibt eine Enumeration von WebSocket-Transportverwendung an.</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.Always">
+      <summary>Gibt an, dass immer WebSocket-Transport verwendet wird.</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.Never">
+      <summary>Gibt an, dass WebSocket-Transport nie verwendet wird.</summary>
+    </member>
+    <member name="F:System.ServiceModel.Channels.WebSocketTransportUsage.WhenDuplex">
+      <summary>Gibt an, dass WebSocket-Transport nur für Duplexdienstverträge verwendet wird.</summary>
+    </member>
+  </members>
+</doc>
