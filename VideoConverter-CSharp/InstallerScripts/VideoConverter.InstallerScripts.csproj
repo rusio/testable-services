@@ -51,10 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Install-Scripts\Port-Enable.cmd" />
-    <None Include="Install-Scripts\Port-Disable.cmd" />
-    <None Include="Install-Scripts\Service-Install.cmd" />
-    <None Include="Install-Scripts\Service-Uninstall.cmd" />
+    <None Include="Port-Disable.cmd" />
+    <None Include="Port-Enable.cmd" />
+    <None Include="Service-Install.cmd" />
+    <None Include="Service-Uninstall.cmd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

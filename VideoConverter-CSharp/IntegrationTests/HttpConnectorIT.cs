@@ -74,8 +74,8 @@ namespace Lindenbaum.Presentation.Converter.IntegrationTests.HttpConnector
 
             // assert
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            var json = response.Content.ReadAsStringAsync().Result;
-            var processorState = JsonConvert.DeserializeObject<string>(json);
+            var processorStateJson = response.Content.ReadAsStringAsync().Result;
+            var processorState = JsonConvert.DeserializeObject<string>(processorStateJson);
             Assert.That(processorState, Is.EqualTo("IDLE"));
         }
 
