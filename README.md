@@ -1,18 +1,25 @@
 Testable Services with Inverted Component Dependencies
 ======================================================
 
-A service provides some functionality in a certain environment. A service is usually deployed as a long running process. But in distributed systems, a service rarely exists on its own. Usually there are multiple services collaborating with each other and communicating via different protocols. Services might be wildly interconnected and dependent on each other in order to function.
+A service provides some functionality in a certain environment. It can be implemented in any programming language and is usually deployed as a long running OS-level process.
+
+But in a distributed system, a service rarely exists on its own. Usually there are multiple services collaborating with each other and communicating via different protocols. The services might be wildly interconnected and dependent on each other in order to function.
+
+Similar to testing small units like classes, testing whole services faces the same difficulties when it comes to dependencies: A services receives and submits requests from and to other services, which must be up and running.
 
 
-Motivation
-==========
+Testing Objectives - What to Test?
+==================================
 
-Like components, testing services faces the same difficulties when it comes to dependencies: Services receive and submits requests from and to other services, which must be up and running.
+There are three main objectives when testing a service:
 
-There are two main objectives when testing a service:
-
-- Test interactions between the service and its surroundings.
 - Test the core business logic inside the service.
+- Test interactions between the service and its collaborators.
+- Test the integration of the service with the OS.
+
+
+Testing Possibilities - What is Exposed?
+========================================
 
 A service has some typical interfaces to the external world:
 
@@ -26,7 +33,7 @@ A test must be able to interact with these interfaces, in order to arrange, act 
 Achieving Testability at the Component Level
 ============================================
 
-The key idea is to design the internal components within a service in a way, that the service becomes testable at component level.
+The key idea is to design the internal components within a service in such a way, that the service becomes testable at component level.
 
 This is achieved by splitting up the logic into a core component and multiple peripheral components and by utilizing dependency inversion.
 
@@ -158,7 +165,6 @@ Related Patterns
 ================
 
 - [Clean Architecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-- [Ports and Adapters](http://alistair.cockburn.us/Hexagonal+architecture)
 
 
 Conclusion
