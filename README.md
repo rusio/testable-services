@@ -7,6 +7,8 @@ But in a distributed system, a service rarely exists on its own. Usually there a
 
 Similar to testing small units like classes, testing whole services faces the same difficulties when it comes to dependencies: A services receives and submits requests from and to other services, which must be up and running.
 
+The following text is inspired by ideas introduced by Robert C. Martin (Uncle Bob) in his work on the SOLID design principles and the [Clean Architecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) model.
+
 
 Testing Objectives - What to Test?
 ==================================
@@ -59,8 +61,6 @@ Inverted: components hold related code. But component dependencies point bottom-
 ![Component Design Example 3](diagrams/Component_Design_Example_3.png?raw=true)
 
 Takes the second approach further and extracts the main entry point in a dedicated component for object wiring and configuration. More importantly, component dependencies are inverted: peripheral components depend on the core component, making the core component environment-agnostic.
-
-The following text is inspired by ideas introduced by Robert C. Martin (Uncle Bob) in his work on the SOLID design principles and the Clean Architecture model.
 
 
 Intent
@@ -159,12 +159,6 @@ The component test comes in two main variations:
 - Tests targeting the core component. They do not require any external dependencies. These tests are highly isoloated and can make use of the component's public API for all test phases. The target component is initialized in memory, tested and garbage collected. The test asserts by checking return values or by acting like an Observer/Listener. No TCP connections or other external interactions are required.
 
 - Tests targeting one of the satellite components. They have properties similar to integration tests and may use embedded doubles of external dependencies like an embedded database. These tests are integrative and may use another mechanism for the Arrange and Assert phases.
-
-
-Related Patterns
-================
-
-- [Clean Architecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
 
 Conclusion
