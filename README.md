@@ -7,7 +7,7 @@ But in a distributed system, a service rarely exists on its own. Usually there a
 
 Similar to testing small units like classes, testing whole services faces the same difficulties when it comes to dependencies: A services receives and submits requests from and to other services, which must be up and running.
 
-The following text is inspired by ideas introduced by Robert C. Martin (Uncle Bob) in his work on the SOLID design principles and the [Clean Architecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) model.
+The following text is inspired by ideas introduced by Robert C. Martin (Uncle Bob) in his work on the [SOLID design principles](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod) and the [Clean Architecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) model.
 
 
 Testing Objectives - What to Test?
