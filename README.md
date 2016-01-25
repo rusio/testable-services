@@ -1,5 +1,5 @@
-Testable Services with Inverted Component Dependencies
-======================================================
+Testable Services with Component-Level Tests and Dependency Inversion
+=====================================================================
 
 A service provides some functionality in a certain environment. It can be implemented in any programming language and is usually deployed as a long running OS-level process.
 
@@ -41,30 +41,38 @@ This is achieved by splitting up the logic into a core component and multiple pe
 
 Coarse-grained API and integration tests target individual components, and test them in isolation, thus reducing the need for real collaborating services or a production-like environment.
 
-Examples of Component Design
-----------------------------
+Monolythic Application
+----------------------
 
-Monolythic: all the code is located in a single component. Dependencies do not cross components.
+In a monolythic design, all the code is located in a single component. Dependencies do not cross components.
 
 ![Component Design Example 1](diagrams/Component_Design_Example_1.png?raw=true)
 
 In a monolithic application, all the logic is put into a single deployable unit. Such internal architecture makes it hard to test the internal components in isolation and might require a full-blown end-to-end test, including setup of any collaborating services.
 
-Cohesive: components hold related code. Root component uses subordnate components.
+Intuitive Divide and Conquer
+----------------------------
+
+Cohesive components put code related to the same responsibility in separate deployable units. The root component uses subordnate components.
 
 ![Component Design Example 2](diagrams/Component_Design_Example_2.png?raw=true)
 
-An typical divide-and-conquer component design, where related logic is extracted into dedicated components. The main component is designated to coordinate the subordinate components. Note that the dependencies follow the "intuitive" top-down direction and the root component also holds the main entry point.
+This is a typical divide-and-conquer component design, where related logic is extracted into dedicated components and the main component is designated to coordinate the subordinate components. 
 
-Inverted: components hold related code. But component dependencies point bottom-up into the core component.
+Note that the dependencies follow the "intuitive" top-down direction and the root component knows about the subordinate components. The root component usually also holds the main entry point.
+
+Inverted Component Dependencies
+-------------------------------
+
+If we apply the principle of dependency inversion at the component level we end up with inverted component dependencies like on the figure below. That is, components still hold related code, but component dependencies point bottom-up from the satellite towards the core component.
 
 ![Component Design Example 3](diagrams/Component_Design_Example_3.png?raw=true)
 
-Takes the second approach further and extracts the main entry point in a dedicated component for object wiring and configuration. More importantly, component dependencies are inverted: peripheral components depend on the core component, making the core component environment-agnostic.
+This scheme takes the second approach further and extracts the main entry point in a dedicated component for object wiring and configuration. More importantly, component dependencies are inverted: peripheral components depend on the core component, making the core component environment-agnostic.
 
 
-Intent
-======
+Intent of the Pattern
+=====================
 
 - Split-up the logic into one core component, and multiple peripheral components in order to test at the component level.
 - Invert dependencies between components in order to make the core component agnostic of the context it runs in.
@@ -72,8 +80,8 @@ Intent
 - Each test exercises a single component, using only the component's public API (in contrast to unit tests, which may access non-public API).
 
 
-Structure
-=========
+Component Structure
+===================
 
 The core component is fully agnostic of the environment in which it operates. It contains a domain model and business logic, but no deployment-specific logic.
 
