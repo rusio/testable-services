@@ -1,13 +1,28 @@
 Testable Services with Component-Level Tests and Dependency Inversion
 =====================================================================
 
-A service provides some functionality in a certain environment. It can be implemented in any programming language and is usually deployed as a long running OS-level process.
+A (micro-) service is usually deployed as a long running OS-level process and is a logical part of a distributed system. There, it rarely exists on its own, but collaborates with various other services via different protocols. The services in the system might be wildly interconnected and dependent on each other in order to function.
 
-But in a distributed system, a service rarely exists on its own. Usually there are multiple services collaborating with each other and communicating via different protocols. The services might be wildly interconnected and dependent on each other in order to function.
-
-Similar to testing small units like classes, testing whole services faces the same difficulties when it comes to dependencies: A services receives and submits requests from and to other services, which must be up and running.
+Just like testing small units like classes, testing whole services faces similar difficulties when it comes to dependencies: A service uses and is used by other services, which must be up and running in order to start and excersize the service under test.
 
 The following text is inspired by ideas introduced by Robert C. Martin (Uncle Bob) in his work on the [SOLID design principles](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod) and the [Clean Architecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) model.
+
+
+Achieving Testability at the Component Level
+============================================
+
+The key idea is to design the internal components within a service in such a way, that the service becomes testable at component level. We want to enable coarse-grained tests at the component level and reduce the number of tests collaborating with external services. At the end, our test suite contains a bunch of component-level unit tests and a bunch of component-level integration tests.
+
+This is achieved by splitting up the logic into a core component and multiple peripheral components and by utilizing dependency inversion. Coarse-grained API and integration tests target individual components, and test them in isolation, thus reducing the need for real collaborating services or a production-like environment.
+
+
+Intent of the Pattern
+=====================
+
+- Split-up the logic into one core component, and multiple peripheral components in order to test at the component level.
+- Invert dependencies between components in order to make the core component agnostic of the context it runs in.
+- Each test in the harness targets a specific component in isolation, by taking the role of the collaborating components.
+- Each test exercises a single component, using only the component's public API (in contrast to unit tests, which may access non-public API).
 
 
 Testing Objectives - What to Test?
@@ -32,14 +47,8 @@ A service has some typical interfaces to the external world:
 A test must be able to interact with these interfaces, in order to arrange, act and assert. And while these interfaces might be well-known in advance, services are often not easily testable in isolation.
 
 
-Achieving Testability at the Component Level
-============================================
-
-The key idea is to design the internal components within a service in such a way, that the service becomes testable at component level.
-
-This is achieved by splitting up the logic into a core component and multiple peripheral components and by utilizing dependency inversion.
-
-Coarse-grained API and integration tests target individual components, and test them in isolation, thus reducing the need for real collaborating services or a production-like environment.
+Examples of Component Design
+============================
 
 Monolythic Application
 ----------------------
@@ -69,15 +78,6 @@ If we apply the principle of dependency inversion at the component level we end 
 ![Component Design Example 3](diagrams/Component_Design_Example_3.png?raw=true)
 
 This scheme takes the second approach further and extracts the main entry point in a dedicated component for object wiring and configuration. More importantly, component dependencies are inverted: peripheral components depend on the core component, making the core component environment-agnostic.
-
-
-Intent of the Pattern
-=====================
-
-- Split-up the logic into one core component, and multiple peripheral components in order to test at the component level.
-- Invert dependencies between components in order to make the core component agnostic of the context it runs in.
-- Each test in the harness targets a specific component in isolation, by taking the role of the collaborating components.
-- Each test exercises a single component, using only the component's public API (in contrast to unit tests, which may access non-public API).
 
 
 Component Structure
